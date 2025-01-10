@@ -3,6 +3,8 @@ CREATE DATABASE IF NOT EXISTS `projectwork`;
 GRANT ALL ON projectwork.* TO 'app_generation'@'localhost';
 FLUSH PRIVILEGES; */
 
+#DROP TABLES utente, prodotto, ordine, ordine_dettaglio;
+
 USE `projectwork`;
 
 CREATE TABLE IF NOT EXISTS `utente` (
@@ -10,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `utente` (
 `nome` varchar(75) DEFAULT NULL,
 `cognome` varchar(75) DEFAULT NULL,
 `data_nascita` date DEFAULT NULL,
-`email` varchar(50) NOT NULL,
+`email` varchar(50) NOT NULL UNIQUE,
 `password` varchar(20) NOT NULL,
 `ruolo` enum('ADMIN','UTENTE') NOT NULL, # (va anche bene varchar)
 PRIMARY KEY (`utente_id`),
