@@ -5,7 +5,7 @@ body{
 .navbar{
     height: 70px;
     box-shadow: 0 0 5px 0 ;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     position: fixed;
@@ -31,7 +31,7 @@ body{
     }
 }
 
-/* SLIDER */
+/******** SLIDER *******/
 .hero-slider {
     position: relative;
     width: 100%;
@@ -114,7 +114,8 @@ body{
     background: rgba(0, 0, 0, 0.8);
 }
 
-/* PRODUCTS GRID */
+
+/********************* PRODUCTS GRID *****************/
 .product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 colonne */
@@ -137,6 +138,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    cursor: pointer; /* Mostra il cursore "mano" su tutta la card */
 }
 
 .card img {
@@ -179,8 +181,22 @@ body{
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-link {
+    text-decoration: none; /* Rimuove la sottolineatura del link */
+    color: inherit; /* Mantiene il colore del testo originale */
+    display: block; /* Rende il link un blocco per avvolgere la card */
+}
+/**********************************/
+
+.section-title{
+    text-align: center;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 3rem;
+    color: white;
 }
 
 @media (max-width: 768px) {
