@@ -1,7 +1,13 @@
+// Un DTO è usato per trasferire dati tra i vari livelli dell'applicazione, ad esempio tra il controller e il service o tra il service e il frontend.
+// A differenza delle entità, un DTO dovrebbe contenere solo i dati necessari per il trasferimento, escludendo logiche aggiuntive o informazioni sensibili (es. password).
+
 package org.generation.NerdVault.dtos;
 
-import java.sql.Date;
+import java.sql.Date; // è specifico per JDBC e database relazionali, nel contesto di un DTO (che non mappa direttamente il database) potrebbe essere sostituito con un tipo di data più generico come LocalDate
 
+
+// Il costruttore vuoto (default constructor) è essenziale per molte librerie che deserializzano oggetti JSON.
+// Il costruttore parametrizzato è utile per creare un DTO direttamente con tutti i campi impostati.
 public class UtenteDto {
 	
 	private int utenteId;
