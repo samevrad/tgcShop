@@ -1,5 +1,6 @@
 body{
-    background-color: black;
+    background-color: rgb(0, 0, 0);
+    /*background-image: url("/Front/assets/img/background-tcg.jpeg"); */
 }
 
 .navbar{
@@ -198,6 +199,26 @@ body{
     font-size: 3rem;
     color: white;
 }
+
+/******* PARALLAX *******/
+.parallax {
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 250px;
+  }
+
+  .parallax1 {
+    background-image: url('/Front/assets/img/parallax1.jpg');
+  }
+
+  .parallax2 {
+    background-image: url('/Front/assets/img/parallax2.jpg');
+  }
+
+  .parallax3{
+    background-image: url('/Front/assets/img/parallax3.jpg');
+  }
 
 @media (max-width: 768px) {
     .product-grid {
