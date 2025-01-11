@@ -56,6 +56,19 @@ Implementa nel service la logica necessaria, come:
 Validazioni personalizzate.
 Operazioni complesse sui dati.
 
+## Controller 
+E' una parte fondamentale in un'applicazione Spring Boot. Si trova nel livello più alto dell'architettura MVC (Model-View-Controller) e si occupa di ricevere le richieste dagli utenti (frontend, API client, ecc.) e rispondere con i dati elaborati dal servizio.
+* Cosa fa il controller?
+-Gestisce le richieste HTTP:
+Riceve richieste HTTP (es. GET, POST, PUT, DELETE).
+- Associa URL specifici alle funzioni tramite annotazioni come @GetMapping, @PostMapping, ecc.
+- Interagisce con il livello di servizio:
+Delegando al service l'elaborazione della logica di business.
+Il controller è responsabile solo di ricevere e restituire dati, non di applicare logica complessa.
+- Converte i dati:
+Accetta input dall'utente (ad esempio, in formato JSON) e li trasforma in DTO o entità.
+Restituisce dati formattati per il client (ad esempio, una risposta JSON o HTML).
+
 
 ## Schema generale del flusso
 * Entità: Rappresenta i dati nel database.
