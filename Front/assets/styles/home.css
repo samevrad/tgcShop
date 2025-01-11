@@ -25,10 +25,22 @@ body{
         font-size: xx-large;
         /* border-bottom: 2px white dotted; */
     }
+    .navbar-brand:hover{
+        color: rgb(255, 255, 255, 0.75);
+    }
+
     a{
         font-family: "Pixelify Sans", sans-serif;
         font-size: larger;
-        color: white;
+        color: rgb(165,55,240);
+        text-shadow: 
+        0px 0px 5px rgba(165,55,240, 0.8),   /* Luce centrale */
+        0px 0px 15px rgba(165,55,240, 0.7),  /* Luce diffusa */
+        0px 0px 25px rgba(165,55,240, 0.6),  /* Luce più sfumata */
+        0px 0px 35px rgba(165,55,240, 0.5);  /* Luce che si dissipa */
+    }
+    a:hover {
+        color: rgb(255, 255, 255,0.75) !important;
     }
 }
 
@@ -64,6 +76,9 @@ body{
     color: #fff;
     text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
     max-width: 600px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .content h1 {
@@ -79,7 +94,7 @@ body{
 .btn {
     display: inline-block;
     padding: 10px 20px;
-    background: #FF5733;
+    background: rgb(165,55,240);
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -87,7 +102,8 @@ body{
 }
 
 .btn:hover {
-    background: #FF7043;
+    background: white;
+    color: rgb(165,55,240);
 }
 
 .navigation {
@@ -112,7 +128,7 @@ body{
 }
 
 .navigation button:hover {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(255, 254, 254, 0.8);
 }
 
 
