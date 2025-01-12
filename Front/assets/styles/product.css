@@ -1,0 +1,38 @@
+/* 
+-Immagine grande a fianco/galleria
+-Desc sotto/ a lato
+-Form d'acquisto a fianco (quantità, prezzo, add carrello) 
+*/
+
+#product-container{
+    /* background-color: white; */
+    margin: auto;
+    margin-top: 5%;
+    border: 1px solid red;
+    color: white;
+}
+
+.product-img{
+    width: 80%;
+    height: 50%;
+    padding-top: 5%;
+    object-fit: contain;
+}
+
+.product-desc{
+    color: white;
+    width: 80%;
+    margin-top: 25px;
+}
+
+#product-title{
+    padding-top: 25px;
+}
+
+#product-price{
+    margin-top: 1rem;
+}
+
+#product-quantity{
+    margin-top: 1rem;
+}

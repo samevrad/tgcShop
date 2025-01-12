@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             id: 1,
             categoria: "Videogame",
-            immagine: "/assets/img/baldurs_gate_3_collector_DXz6AG6_jpg_1600x900_crop_q85.webp",
+            immagine: "../assets/img/baldurs_gate_3_collector_DXz6AG6_jpg_1600x900_crop_q85.webp",
             descrizione: "trallalero trallalla",
             disponibile: true,
         },
