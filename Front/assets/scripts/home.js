@@ -30,3 +30,4 @@ prevBtn.addEventListener('click', prevSlide);
 
 // Auto-play slider (optional)
 setInterval(nextSlide, 5000); // Change slide every 5 seconds
+// reset intervallo su click prev succ
