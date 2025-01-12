@@ -4,6 +4,9 @@
 package org.generation.NerdVault.dtos;
 
 import java.sql.Date; // è specifico per JDBC e database relazionali, nel contesto di un DTO (che non mappa direttamente il database) potrebbe essere sostituito con un tipo di data più generico come LocalDate
+import java.time.LocalDate;
+
+import enums.UtenteRuolo;
 
 
 // Il costruttore vuoto (default constructor) è essenziale per molte librerie che deserializzano oggetti JSON.
@@ -13,7 +16,7 @@ public class UtenteDto {
 	private int utenteId;
 	private String nome;
 	private String cognome;
-	private Date dataNascita;
+	private LocalDate dataNascita;
 	private String email;
 	private UtenteRuolo ruolo;
 
@@ -41,11 +44,11 @@ public class UtenteDto {
 		this.cognome = cognome;
 	}
 
-	public Date getDataNascita() {
+	public LocalDate getDataNascita() {
 		return dataNascita;
 	}
 
-	public void setDataNascita(Date dataNascita) {
+	public void setDataNascita(LocalDate dataNascita) {
 		this.dataNascita = dataNascita;
 	}
 
@@ -68,7 +71,9 @@ public class UtenteDto {
 	public UtenteDto() {
 	}
 	
-	public UtenteDto(int utenteId, String nome, String cognome, Date dataNascita, String email,
+	
+	// perché id nel costruttore?
+	public UtenteDto(int utenteId, String nome, String cognome, LocalDate dataNascita, String email,
 			UtenteRuolo ruolo) {
 		this.utenteId = utenteId;
 		this.nome = nome;

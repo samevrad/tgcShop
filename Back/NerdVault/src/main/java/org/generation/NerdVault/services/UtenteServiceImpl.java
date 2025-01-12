@@ -27,8 +27,7 @@ public class UtenteServiceImpl implements UtenteService{
 		Optional<Utente> opt = utenteRepo.findById(id);
 		if(opt.isPresent()) {
 			return opt.get();
-		}
-		return null;
+		} else return null;
 	}
 
 	@Override

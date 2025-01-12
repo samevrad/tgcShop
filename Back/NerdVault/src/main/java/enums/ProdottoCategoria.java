@@ -1,4 +1,4 @@
-package org.generation.NerdVault.dtos;
+package enums;
 
 public enum ProdottoCategoria {
 

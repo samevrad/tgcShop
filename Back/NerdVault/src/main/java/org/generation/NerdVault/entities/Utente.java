@@ -1,11 +1,11 @@
 package org.generation.NerdVault.entities;
 
 import java.sql.Date;
-
-import org.generation.NerdVault.dtos.UtenteRuolo;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import enums.UtenteRuolo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -30,7 +30,7 @@ public class Utente {
 	private String cognome;
 
 	@Column(nullable = true)
-	private Date dataNascita;
+	private LocalDate dataNascita;
 
 	@Column(length = 50, nullable = false, unique = true)
 	private String email;
@@ -68,11 +68,11 @@ public class Utente {
 		this.cognome = cognome;
 	}
 
-	public Date getDataNascita() {
+	public LocalDate getDataNascita() {
 		return dataNascita;
 	}
 
-	public void setDataNascita(Date dataNascita) {
+	public void setDataNascita(LocalDate dataNascita) {
 		this.dataNascita = dataNascita;
 	}
 
