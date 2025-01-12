@@ -1,0 +1,114 @@
+<!-- Protetta da un controllo per l’autenticazione. Deve prevedere un form per l’inserimento di un prodotto
+nell’archivio e un bottone di logout attraverso il quale tornare alla pagina home.
+Tale form dovrà contenere i seguenti campi:
+Nome, Descrizione, Categoria, Prezzo, Rimanenza o QtaMagazzino, Abilitato, immagine, Data Inizio
+Prevendita, ScontoPrevendita. L’inserimento delle informazioni relative agli ultimi 2 campi del form non
+devono essere obbligatori.
+(facoltativo - implementare pre-ordine di articoli in prevendita con calcolo della data di uscita)
+Attraverso questa pagina l’amministratore deve poter inserire le informazioni relative a un nuovo prodotto,
+che pertanto dovranno essere visibili nella home e attraverso la pagina del dettaglio prodotto -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/Front/assets/styles/management.css">
+    <title>Add-product</title>
+</head>
+<body>
+
+    <div class="container my-5">
+        <h1>Insert new product</h1>
+        <form id="productForm" class="mt-4">
+            <!-- Nome e Categoria -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="name" class="form-label">Product name</label>
+                    <input type="text" class="form-control" id="name" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="category" class="form-label">Product category</label>
+                    <select class="form-select" id="category" required>
+                        <option value="TCG">TCG</option>
+                        <option value="Videogames">Videogames</option>
+                        <option value="Comics">Comics</option>
+                        <option value="Manga">Manga</option>
+                        <option value="Table games">Table games</option>
+                        <option value="Accessories">Accessories</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Descrizione -->
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" rows="3" required></textarea>
+            </div>
+            <!-- Prezzo -->
+            <div class="input-group mb-3 w-25">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" aria-label="price" step="0.01" min="0.01">
+              </div>
+            <!-- Quantità -->
+            <div class="mb-3 w-25">
+                <label for="quantity" class="form-label">Quantity</label>
+                <input type="number" class="form-control" id="quantity" placeholder="0" min="1"  required>
+            </div>
+            <!-- Abilitato -->
+            <div class="form-check mb-3">
+                <label class="form-check-label" for="abled">Abled</label>
+                <input type="checkbox" class="form-check-input" id="abled"  required>   
+            </div>
+            <!-- Immagine -->
+            <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="text" class="form-control" id="image" placeholder="Insert image URL" required>
+                <img id="imgPreview" src="" alt="Image Preview" class="img-fluid mt-3" style="max-width: 200px; display: none;">
+            </div>
+            <!-- Inizio prevendita -->
+            <div class="mb-3 w-25">
+                <label for="preview-start" class="form-label">Preview start</label>
+                <input type="date" class="form-control" id="preview-start">
+            </div>
+             <!-- Sconto prevendita -->
+             <div class="mb-3 w-25">
+                <label for="preview-discount" class="form-label">Preview discount</label>
+                <input type="number" class="form-control" id="preview-discount" placeholder="0.0">
+            </div>
+            <!-- Bottone Inserisci -->
+            <button type="submit" class="btn btn-primary">Add Product</button>
+            <!-- Bottone Logout -->
+            <button type="button" class="btn btn-danger" id="logout">Logout</button>
+        </form>
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        console.log("Script loaded correctly");
+        // Funzione per caricare immagine
+        const imageInput = document.getElementById('image');
+        const imgPreview = document.getElementById('imgPreview');
+
+        imageInput.addEventListener('input', function () {
+        const url = imageInput.value.trim();
+
+        if (url) {
+            imgPreview.src = url; // Imposta la sorgente dell'immagine
+            imgPreview.style.display = 'block'; // Mostra l'immagine
+            } else {
+            imgPreview.src = ''; // Rimuove l'immagine se il campo è vuoto
+            imgPreview.style.display = 'none'; // Nasconde l'anteprima
+            }
+        });
+
+        // Evento per gestire errori di caricamento dell'immagine
+        imgPreview.addEventListener('error', function () {
+            imgPreview.src = ''; // Resetta la sorgente dell'immagine
+            imgPreview.style.display = 'none'; // Nasconde l'immagine in caso di errore
+        });
+    </script>
+</body>
+</html>
