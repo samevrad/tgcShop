@@ -52,12 +52,19 @@ document.addEventListener("DOMContentLoaded", () => {
             const productQuantity = document.getElementById("product-quantity");
             const productImg = document.querySelector(".product-img");
             const productDesc = document.getElementById("product-description");
+            const btnCarrello = document.getElementById("btn-carrello");
+            const productAvailable = document.getElementById("product-available");
 
-            
             productTitle.textContent = product.nome;
             productPrice.textContent = `Prezzo: €${product.prezzo.toFixed(2)}`;
             productImg.src = product.immagine;
             productDesc.innerHTML = product.descrizione || "N/A";
+
+            if(product.rimanenza==0){
+                productQuantity.classList.add("d-none");
+                btnCarrello.classList.add("d-none");
+                productAvailable.classList.remove("d-none")
+            }
         })
         /*.catch(error => {
             console.error("Errore durante il recupero dei dati del prodotto:", error);

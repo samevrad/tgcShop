@@ -36,3 +36,8 @@
 #product-quantity{
     margin-top: 1rem;
 }
+
+#product-available{
+    background-color: white;
+    color: blue;
+}
