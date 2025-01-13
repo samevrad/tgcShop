@@ -40,6 +40,9 @@ public class Prodotto {
 	@Column(nullable = false)
 	private boolean abilitato;
 	
+	@Column(nullable = false)
+	private boolean visibile;
+	
 	@Column(length = 75, nullable = true)
 	private String immagine;
 	
@@ -143,5 +146,15 @@ public class Prodotto {
 	public void setScontoPrevendita(Double scontoPrevendita) {
 		this.scontoPrevendita = scontoPrevendita;
 	}
+
+	public boolean isVisibile() {
+		return visibile;
+	}
+
+	public void setVisibile(boolean visibile) {
+		this.visibile = visibile;
+	}
+	
+	
 	
 }

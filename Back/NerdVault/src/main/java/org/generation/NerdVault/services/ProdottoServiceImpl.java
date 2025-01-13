@@ -48,6 +48,25 @@ public class ProdottoServiceImpl implements ProdottoService {
 	public void cancellaProdotto(int id) {
 		prodottoRepo.deleteById(id);
 	}
+
+	@Override
+	public ProdottoDto aggiorna(Prodotto prodotto, Prodotto modifiche) {
+		prodotto.setNome(modifiche.getNome());
+		prodotto.setDescrizione(modifiche.getDescrizione());
+		prodotto.setCategoria(modifiche.getCategoria());
+		prodotto.setPrezzo(modifiche.getPrezzo());
+		prodotto.setRimanenza(modifiche.getRimanenza());
+		prodotto.setAbilitato(modifiche.isAbilitato());
+		prodotto.setVisibile(modifiche.isVisibile());
+		prodotto.setImmagine(modifiche.getImmagine());
+		prodotto.setInizioPrevendita(modifiche.getInizioPrevendita());
+		prodotto.setDataUscita(modifiche.getDataUscita());
+		prodotto.setScontoPrevendita(modifiche.getScontoPrevendita());
+		
+		prodottoRepo.save(prodotto);
+		
+		return this.toProdottoDto(prodotto);
+	}
 	
 	private ProdottoDto toProdottoDto(Prodotto prodotto) {
 		ProdottoDto dto = new ProdottoDto(
@@ -58,30 +77,13 @@ public class ProdottoServiceImpl implements ProdottoService {
 				prodotto.getPrezzo(), 
 				prodotto.getRimanenza(), 
 				prodotto.isAbilitato(), 
+				prodotto.isVisibile(),
 				prodotto.getImmagine(), 
 				prodotto.getInizioPrevendita(), 
 				prodotto.getDataUscita(), 
 				prodotto.getScontoPrevendita()
 				);
 		return dto;
-	}
-
-	@Override
-	public ProdottoDto aggiorna(Prodotto prodotto, Prodotto modifiche) {
-		prodotto.setNome(modifiche.getNome());
-		prodotto.setDescrizione(modifiche.getDescrizione());
-		prodotto.setCategoria(modifiche.getCategoria());
-		prodotto.setPrezzo(modifiche.getPrezzo());
-		prodotto.setRimanenza(modifiche.getRimanenza());
-		prodotto.setAbilitato(modifiche.isAbilitato());
-		prodotto.setImmagine(modifiche.getImmagine());
-		prodotto.setInizioPrevendita(modifiche.getInizioPrevendita());
-		prodotto.setDataUscita(modifiche.getDataUscita());
-		prodotto.setScontoPrevendita(modifiche.getScontoPrevendita());
-		
-		prodottoRepo.save(prodotto);
-		
-		return this.toProdottoDto(prodotto);
 	}
 
 }

@@ -17,16 +17,14 @@ public class ProdottoDto {
 	private double prezzo;
 	private int rimanenza;
 	private boolean abilitato;
+	private boolean visibile;
 	private String immagine;
 	private LocalDate inizioPrevendita;
 	private LocalDate dataUscita;
 	private double scontoPrevendita;
 	
 	
-	
-	
-	
-	
+	/*------------------ Getters / Setters ------------------*/
 	
 	public String getNome() {
 		return nome;
@@ -95,14 +93,19 @@ public class ProdottoDto {
 		this.scontoPrevendita = scontoPrevendita;
 	}
 	
+	public boolean isVisibile() {
+		return visibile;
+	}
+	
+	public void setVisibile(boolean visibile) {
+		this.visibile = visibile;
+	}
 	
 	public ProdottoDto() {
 	}
 	
-	
-	
 	public ProdottoDto(int prodottoId, String nome, String descrizione, ProdottoCategoria categoria, double prezzo,
-			int rimanenza, boolean abilitato, String immagine, LocalDate inizioPrevendita, LocalDate dataUscita,
+			int rimanenza, boolean abilitato, boolean visibile, String immagine, LocalDate inizioPrevendita, LocalDate dataUscita,
 			double scontoPrevendita) {
 		super();
 		this.prodottoId = prodottoId;
@@ -112,6 +115,7 @@ public class ProdottoDto {
 		this.prezzo = prezzo;
 		this.rimanenza = rimanenza;
 		this.abilitato = abilitato;
+		this.visibile = visibile;
 		this.immagine = immagine;
 		this.inizioPrevendita = inizioPrevendita;
 		this.dataUscita = dataUscita;

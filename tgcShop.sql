@@ -5,7 +5,7 @@ FLUSH PRIVILEGES; */
 
 USE `projectwork`;
 
-#DROP TABLES utente, prodotto, ordine, ordine_dettaglio;
+DROP TABLES utente, prodotto, ordine, ordine_dettaglio;
 
 CREATE TABLE IF NOT EXISTS `utente` (
 `utente_id` int NOT NULL AUTO_INCREMENT,
@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `prodotto` (
     `prezzo` DECIMAL(6,2) NOT NULL,
     `rimanenza` INT NOT NULL,
     `abilitato` BOOLEAN DEFAULT FALSE,
+    `visibile` BOOLEAN DEFAULT TRUE,
     `immagine` VARCHAR(75) DEFAULT NULL,
     `inizio_prevendita` DATE DEFAULT NULL,
 	`data_uscita` DATE DEFAULT NULL,
@@ -70,7 +71,8 @@ INSERT INTO `prodotto` (nome, descrizione, categoria, prezzo, rimanenza, abilita
 ('Altro 1', 'Descrizione di un altro prodotto', 'ALTRO', 9.99, 80, FALSE, NULL, NULL, NULL, NULL),
 ('Prodotto Prevendita 2', 'Descrizione del prodotto in prevendita 2', 'PREVENDITA', 79.99, 50, TRUE, 'prevendita2.jpg', '2025-01-15', '2025-02-15', 15.00),
 ('Gioco 2', 'Descrizione del gioco 2', 'GAMES', 49.99, 25, TRUE, 'game2.jpg', NULL, NULL, NULL),
-('Merchandise 2', 'Descrizione del merchandise 2', 'MERCH', 24.99, 40, TRUE, 'merch2.jpg', NULL, NULL, NULL);
+('Merchandise 2', 'Descrizione del merchandise 2', 'MERCH', 24.99, 40, TRUE, 'merch2.jpg', NULL, NULL, NULL),
+('Merchandise 3', 'Descrizione del merchandise 3', 'MERCH', 34.99, 0, TRUE, 'merch2.jpg', NULL, NULL, NULL);
 
 
 INSERT INTO `ordine` (utente_id, data_ordine, data_consegna, stato_ordine, indirizzo_spedizione) VALUES
@@ -105,4 +107,5 @@ INSERT INTO `ordine_dettaglio` (ordine_id, prodotto_id, quantita, prezzo) VALUES
 (10, 7, 2, 9.99),
 (10, 10, 1, 24.99);
 
+SELECT * FROM prodotto;
 -- Primi insert DB
