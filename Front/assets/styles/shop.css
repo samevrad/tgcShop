@@ -47,6 +47,8 @@ body{
 
 #prodotti{
     margin-left: 250px;
+    /*overflow-y: auto;
+    border: 2px solid #ddd;; */
 }
 
 #container-prodotti{
@@ -92,3 +94,5 @@ position: fixed; /* Posizione fissa */
 .fixed{
     position: fixed;
 }
+
+/* MEDIA QUERY SPACING SMALL - RIMUOVERE MARGIN LEFT PRODOTTI */
