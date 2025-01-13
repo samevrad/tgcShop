@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.classList.add("card", "m-2","col-xs-12","col-md-5","col-xl-3");
   
         card.innerHTML = `
-          <a href="product.html?id=${prodotto.prodottoId}"<img src="${prodotto.immagine}" class="card-img-top" alt="${prodotto.nome}"></a>
+          <a href="product.html?id=${prodotto.prodottoId}"><img src="${prodotto.immagine}" class="card-img-top" alt="${prodotto.nome}"></a>
           <div class="card-body d-flex flex-column ">
             <h5 class="card-title">${prodotto.nome}</h5>
             <p class="card-text"><strong>€${prodotto.prezzo}</strong></p>
@@ -58,7 +58,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }*/
         // Aggiungi la card al contenitore
         available.appendChild(card);
+         // display numero prodotti
       });
+      const numeroProdotti = document.getElementById("valore-disponibili");
+      numeroProdotti.textContent = `${prodotti.length} prodotti`;
     }
   
     // Chiamata alla funzione per caricare i prodotti

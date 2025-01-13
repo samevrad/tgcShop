@@ -42,7 +42,7 @@ dell’evento come parametro url -->
         <div class="container-fluid row"  id="container-prodotti" >
                 
             <!-- SEZIONE FILTRI -->
-            <div class="col-xs-12 col-sm-2 d-flex flex-column" id="filtri">
+            <div class="col-xs-12 col-sm-2 d-flex flex-column fixed" id="filtri">
                 <h1>All products</h1>
                 <h2>Filters</h2>
                 <label for="price-range" class="form-label"> Price</label>
@@ -51,10 +51,11 @@ dell’evento come parametro url -->
             <!-- FINE SEZIONE FILTRI -->
 
             <!-- Sezione prodotti -->
-            <div class="col-xs-12 col-sm-10 flex-column align-items-center">
+            <div class="col-xs-12 col-sm-10 flex-column align-items-center" id="prodotti">
+                <p id="valore-disponibili"> </p> <!--get dei prodotti per numero-->
                 <!-- SEZIONE PRODOTTI DISPONIBILI -->
                 <div id="available-container" class="row">
-                    <p id="valore-disponibili"> 57 </p> <!--get dei prodotti per numero-->
+                   
 
                 </div>
                 <!-- SEZIONE PRODOTTI PRENOTABILI -->
