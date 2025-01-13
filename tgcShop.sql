@@ -3,9 +3,9 @@ CREATE DATABASE IF NOT EXISTS `projectwork`;
 GRANT ALL ON projectwork.* TO 'app_generation'@'localhost';
 FLUSH PRIVILEGES; */
 
-#DROP TABLES utente, prodotto, ordine, ordine_dettaglio;
-
 USE `projectwork`;
+
+#DROP TABLES utente, prodotto, ordine, ordine_dettaglio;
 
 CREATE TABLE IF NOT EXISTS `utente` (
 `utente_id` int NOT NULL AUTO_INCREMENT,

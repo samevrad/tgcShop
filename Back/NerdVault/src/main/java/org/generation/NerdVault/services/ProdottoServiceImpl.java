@@ -32,21 +32,56 @@ public class ProdottoServiceImpl implements ProdottoService {
 	}
 
 	@Override
-	public Prodotto cercaPerCategoria(ProdottoCategoria categoria) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Prodotto> cercaPerCategoria(ProdottoCategoria categoria) {
+//	public List<Prodotto> cercaPerCategoria(String categoria) {
+		List<Prodotto> p = prodottoRepo.findByCategoria(categoria);
+		return p;
 	}
 
 	@Override
 	public ProdottoDto aggiungi(Prodotto prodotto) {
-		// TODO Auto-generated method stub
-		return null;
+		Prodotto prod = prodottoRepo.save(prodotto);
+		return this.toProdottoDto(prod);
 	}
 
 	@Override
 	public void cancellaProdotto(int id) {
-		// TODO Auto-generated method stub
+		prodottoRepo.deleteById(id);
+	}
+	
+	private ProdottoDto toProdottoDto(Prodotto prodotto) {
+		ProdottoDto dto = new ProdottoDto(
+				prodotto.getProdottoId(), 
+				prodotto.getNome(), 
+				prodotto.getDescrizione(), 
+				prodotto.getCategoria(), 
+				prodotto.getPrezzo(), 
+				prodotto.getRimanenza(), 
+				prodotto.isAbilitato(), 
+				prodotto.getImmagine(), 
+				prodotto.getInizioPrevendita(), 
+				prodotto.getDataUscita(), 
+				prodotto.getScontoPrevendita()
+				);
+		return dto;
+	}
+
+	@Override
+	public ProdottoDto aggiorna(Prodotto prodotto, Prodotto modifiche) {
+		prodotto.setNome(modifiche.getNome());
+		prodotto.setDescrizione(modifiche.getDescrizione());
+		prodotto.setCategoria(modifiche.getCategoria());
+		prodotto.setPrezzo(modifiche.getPrezzo());
+		prodotto.setRimanenza(modifiche.getRimanenza());
+		prodotto.setAbilitato(modifiche.isAbilitato());
+		prodotto.setImmagine(modifiche.getImmagine());
+		prodotto.setInizioPrevendita(modifiche.getInizioPrevendita());
+		prodotto.setDataUscita(modifiche.getDataUscita());
+		prodotto.setScontoPrevendita(modifiche.getScontoPrevendita());
 		
+		prodottoRepo.save(prodotto);
+		
+		return this.toProdottoDto(prodotto);
 	}
 
 }

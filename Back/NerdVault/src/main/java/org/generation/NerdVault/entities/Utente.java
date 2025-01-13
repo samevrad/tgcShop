@@ -1,6 +1,6 @@
 package org.generation.NerdVault.entities;
 
-import java.sql.Date;
+//import java.sql.Date;
 import java.time.LocalDate;
 
 import org.generation.NerdVault.enums.UtenteRuolo;
@@ -45,6 +45,8 @@ public class Utente {
 	@Enumerated(EnumType.STRING) // Indica che il campo ruolo è un enum e che il valore sarà rappresentato comunque come una stringa
 	private UtenteRuolo ruolo;
 
+	/*------------------ Getters / Setters ------------------*/
+	
 	public int getUtenteId() {
 		return utenteId;
 	}

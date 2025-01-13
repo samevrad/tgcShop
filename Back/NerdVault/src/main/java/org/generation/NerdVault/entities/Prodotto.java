@@ -27,8 +27,6 @@ public class Prodotto {
 	@Column(nullable = false)
 	private String descrizione;
 	
-	
-	
 	@Column(columnDefinition = "ENUM('NOVITA', 'PREVENDITA', 'GAMES', 'MERCH', 'ACCESSORI', 'SPECIALE', 'ALTRO')", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private ProdottoCategoria categoria;
@@ -55,14 +53,7 @@ public class Prodotto {
 	@Column(nullable = true)
 	private Double scontoPrevendita;
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	/*------------------ Getters / Setters ------------------*/
 
 	public String getNome() {
 		return nome;
@@ -144,10 +135,10 @@ public class Prodotto {
 		this.dataUscita = dataUscita;
 	}
 
-	public double getScontoPrevendita() {
+	public Double getScontoPrevendita() {
 	    return (scontoPrevendita != null) ? scontoPrevendita : 0.0;
+//		return scontoPrevendita;
 	}
-
 
 	public void setScontoPrevendita(Double scontoPrevendita) {
 		this.scontoPrevendita = scontoPrevendita;

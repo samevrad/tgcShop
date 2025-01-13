@@ -1,6 +1,6 @@
 package org.generation.NerdVault.dtos;
 
-import java.sql.Date; // è specifico per JDBC e database relazionali, nel contesto di un DTO (che non mappa direttamente il database) potrebbe essere sostituito con un tipo di data più generico come LocalDate
+//import java.sql.Date; // è specifico per JDBC e database relazionali, nel contesto di un DTO (che non mappa direttamente il database) potrebbe essere sostituito con un tipo di data più generico come LocalDate
 import java.time.LocalDate;
 
 import org.generation.NerdVault.enums.ProdottoCategoria;

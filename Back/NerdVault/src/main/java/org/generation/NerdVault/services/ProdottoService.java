@@ -11,22 +11,13 @@ public interface ProdottoService {
 	public List<Prodotto> prendiTutti();
 
 	public Prodotto cercaPerId(int id);
-	public Prodotto cercaPerCategoria(ProdottoCategoria categoria);
-	
+	public List<Prodotto> cercaPerCategoria(ProdottoCategoria categoria);
+
 	public ProdottoDto aggiungi(Prodotto prodotto);
 	
+	public ProdottoDto aggiorna(Prodotto prodotto, Prodotto prodottoModificato);
+	
 	public void cancellaProdotto(int id);
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }
