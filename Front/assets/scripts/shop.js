@@ -42,18 +42,20 @@ document.addEventListener("DOMContentLoaded", () => {
       prodotti.forEach(prodotto => {
         // Creazione della card HTML per ogni prodotto
         const card = document.createElement("div");
-        card.classList.add("card", "m-2");
-        card.style.width = "18rem";
+        card.classList.add("card", "m-2","col-xs-12","col-md-5","col-xl-3");
   
         card.innerHTML = `
-          <img src="${prodotto.immagine}" class="card-img-top" alt="${prodotto.nome}">
-          <div class="card-body">
+          <a href="product.html?id=${prodotto.prodottoId}"<img src="${prodotto.immagine}" class="card-img-top" alt="${prodotto.nome}"></a>
+          <div class="card-body d-flex flex-column ">
             <h5 class="card-title">${prodotto.nome}</h5>
             <p class="card-text"><strong>€${prodotto.prezzo}</strong></p>
-            <a href="product.html?id=${prodotto.prodottoId}" class="btn btn-primary">Vedi Dettaglio</a>
           </div>
         `;
   
+        // VISIBILITA' AUMM AUMM
+        /*if(prodotto.visibile==false){
+            card.classList.add("d-none");
+        }*/
         // Aggiungi la card al contenitore
         available.appendChild(card);
       });

@@ -50,14 +50,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const productTitle = document.getElementById("product-title");
             const productPrice = document.getElementById("product-price");
             const productQuantity = document.getElementById("product-quantity");
-            const productImg = document.querySelector(".product-img");
+            const productImg = document.getElementById("product-img");
             const productDesc = document.getElementById("product-description");
             const btnCarrello = document.getElementById("btn-carrello");
             const productAvailable = document.getElementById("product-available");
 
             productTitle.textContent = product.nome;
             productPrice.textContent = `Prezzo: €${product.prezzo.toFixed(2)}`;
-            productImg.src = product.immagine;
+            productImg.src = product.immagine || "/assets/img/default.jpg";
             productDesc.innerHTML = product.descrizione || "N/A";
 
             if(product.rimanenza==0){

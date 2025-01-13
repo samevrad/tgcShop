@@ -61,3 +61,7 @@ body{
     height: 10px; /* Altezza del track */
 }
 /* AGGIUNGERE IL FILE SASS PER PERSONALIZZAZIONI */
+
+.card{
+    background-color: none!important;
+}
