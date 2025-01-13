@@ -74,6 +74,7 @@ INSERT INTO `prodotto` (nome, descrizione, categoria, prezzo, rimanenza, abilita
 ('Merchandise 2', 'Descrizione del merchandise 2', 'MERCH', 24.99, 40, TRUE, 'merch2.jpg', NULL, NULL, NULL),
 ('Merchandise 3', 'Descrizione del merchandise 3', 'MERCH', 34.99, 0, TRUE, 'merch2.jpg', NULL, NULL, NULL);
 
+select * from prodotto;
 
 INSERT INTO `ordine` (utente_id, data_ordine, data_consegna, stato_ordine, indirizzo_spedizione) VALUES
 (1, '2025-01-05 14:30:00', NULL, 'IN LAVORAZIONE', 'Via Roma 1, Milano'),
