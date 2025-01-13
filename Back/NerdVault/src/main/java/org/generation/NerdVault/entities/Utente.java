@@ -3,9 +3,10 @@ package org.generation.NerdVault.entities;
 import java.sql.Date;
 import java.time.LocalDate;
 
+import org.generation.NerdVault.enums.UtenteRuolo;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import enums.UtenteRuolo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

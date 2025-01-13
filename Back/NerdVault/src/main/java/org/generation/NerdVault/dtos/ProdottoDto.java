@@ -3,7 +3,7 @@ package org.generation.NerdVault.dtos;
 import java.sql.Date; // è specifico per JDBC e database relazionali, nel contesto di un DTO (che non mappa direttamente il database) potrebbe essere sostituito con un tipo di data più generico come LocalDate
 import java.time.LocalDate;
 
-import enums.ProdottoCategoria;
+import org.generation.NerdVault.enums.ProdottoCategoria;
 
 
 // Il costruttore vuoto (default constructor) è essenziale per molte librerie che deserializzano oggetti JSON.
@@ -11,6 +11,8 @@ import enums.ProdottoCategoria;
 public class ProdottoDto {
 	
 	private int prodottoId;
+	private String nome;
+	private String descrizione;
 	private ProdottoCategoria categoria;
 	private double prezzo;
 	private int rimanenza;
@@ -19,6 +21,25 @@ public class ProdottoDto {
 	private LocalDate inizioPrevendita;
 	private LocalDate dataUscita;
 	private double scontoPrevendita;
+	
+	
+	
+	
+	
+	
+	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getDescrizione() {
+		return descrizione;
+	}
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
 	public int getProdottoId() {
 		return prodottoId;
 	}
@@ -78,9 +99,15 @@ public class ProdottoDto {
 	public ProdottoDto() {
 	}
 	
-	public ProdottoDto(ProdottoCategoria categoria, double prezzo, int rimanenza, boolean abilitato, String immagine,
-			LocalDate inizioPrevendita, LocalDate dataUscita, double scontoPrevendita) {
+	
+	
+	public ProdottoDto(int prodottoId, String nome, String descrizione, ProdottoCategoria categoria, double prezzo,
+			int rimanenza, boolean abilitato, String immagine, LocalDate inizioPrevendita, LocalDate dataUscita,
+			double scontoPrevendita) {
 		super();
+		this.prodottoId = prodottoId;
+		this.nome = nome;
+		this.descrizione = descrizione;
 		this.categoria = categoria;
 		this.prezzo = prezzo;
 		this.rimanenza = rimanenza;
@@ -90,6 +117,8 @@ public class ProdottoDto {
 		this.dataUscita = dataUscita;
 		this.scontoPrevendita = scontoPrevendita;
 	}
+	
+	
 	
 	
 	

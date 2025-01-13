@@ -1,11 +1,9 @@
 package org.generation.NerdVault.entities;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import org.generation.NerdVault.enums.ProdottoCategoria;
 
-import enums.ProdottoCategoria;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -22,6 +20,14 @@ public class Prodotto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int prodottoId;
+	
+	@Column(nullable = false)
+	private String nome;
+	
+	@Column(nullable = false)
+	private String descrizione;
+	
+	
 	
 	@Column(columnDefinition = "ENUM('NOVITA', 'PREVENDITA', 'GAMES', 'MERCH', 'ACCESSORI', 'SPECIALE', 'ALTRO')", nullable = false)
 	@Enumerated(EnumType.STRING)
@@ -57,6 +63,22 @@ public class Prodotto {
 	
 	
 	
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getDescrizione() {
+		return descrizione;
+	}
+
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
 
 	public int getProdottoId() {
 		return prodottoId;
@@ -99,8 +121,8 @@ public class Prodotto {
 	}
 
 	public String getImmagine() {
-		return immagine;
-	}
+        return immagine != null ? immagine : "/assets/img/non-disponibile.jpg";
+    }
 
 	public void setImmagine(String immagine) {
 		this.immagine = immagine;

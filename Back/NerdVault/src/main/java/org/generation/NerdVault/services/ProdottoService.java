@@ -4,8 +4,7 @@ import java.util.List;
 
 import org.generation.NerdVault.dtos.ProdottoDto;
 import org.generation.NerdVault.entities.Prodotto;
-
-import enums.ProdottoCategoria;
+import org.generation.NerdVault.enums.ProdottoCategoria;
 
 public interface ProdottoService {
 

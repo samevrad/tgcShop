@@ -25,6 +25,8 @@ VALUES ('Paolo','Rossi','1994-06-07','admin@email.com','admin','ADMIN'),
 
 CREATE TABLE IF NOT EXISTS `prodotto` (
 	`prodotto_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`nome` VARCHAR(100) NOT NULL,
+    `descrizione` TEXT DEFAULT NULL,
     `categoria` ENUM('NOVITA', 'PREVENDITA', 'GAMES', 'MERCH', 'ACCESSORI', 'SPECIALE', 'ALTRO') NOT NULL,
     `prezzo` DECIMAL(6,2) NOT NULL,
     `rimanenza` INT NOT NULL,
@@ -34,6 +36,8 @@ CREATE TABLE IF NOT EXISTS `prodotto` (
 	`data_uscita` DATE DEFAULT NULL,
     `sconto_prevendita` DECIMAL(4,2) DEFAULT NULL
 );
+
+
 
 CREATE TABLE IF NOT EXISTS `ordine` (
 	`ordine_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -56,17 +60,18 @@ CREATE TABLE IF NOT EXISTS `ordine_dettaglio` (
     FOREIGN KEY (`prodotto_id`) REFERENCES prodotto(prodotto_id)
 );
 
-INSERT INTO `prodotto` (categoria, prezzo, rimanenza, abilitato, immagine, inizio_prevendita, data_uscita, sconto_prevendita) VALUES
-('NOVITA', 29.99, 50, TRUE, 'novita1.jpg', NULL, NULL, NULL),
-('PREVENDITA', 49.99, 100, TRUE, 'prevendita1.jpg', '2025-02-01', '2025-03-01', 10.00),
-('GAMES', 59.99, 20, TRUE, 'game1.jpg', NULL, NULL, NULL),
-('MERCH', 19.99, 30, FALSE, 'merch1.jpg', NULL, NULL, NULL),
-('ACCESSORI', 14.99, 15, TRUE, NULL, NULL, NULL, NULL),
-('SPECIALE', 99.99, 10, TRUE, 'speciale1.jpg', NULL, NULL, NULL),
-('ALTRO', 9.99, 80, FALSE, NULL, NULL, NULL, NULL),
-('PREVENDITA', 79.99, 50, TRUE, 'prevendita2.jpg', '2025-01-15', '2025-02-15', 15.00),
-('GAMES', 49.99, 25, TRUE, 'game2.jpg', NULL, NULL, NULL),
-('MERCH', 24.99, 40, TRUE, 'merch2.jpg', NULL, NULL, NULL);
+INSERT INTO `prodotto` (nome, descrizione, categoria, prezzo, rimanenza, abilitato, immagine, inizio_prevendita, data_uscita, sconto_prevendita) VALUES
+('Prodotto Novità 1', 'Descrizione del prodotto Novità 1', 'NOVITA', 29.99, 50, TRUE, 'novita1.jpg', NULL, NULL, NULL),
+('Prodotto Prevendita 1', 'Descrizione del prodotto in prevendita 1', 'PREVENDITA', 49.99, 100, TRUE, 'prevendita1.jpg', '2025-02-01', '2025-03-01', 10.00),
+('Gioco 1', 'Descrizione del gioco 1', 'GAMES', 59.99, 20, TRUE, 'game1.jpg', NULL, NULL, NULL),
+('Merchandise 1', 'Descrizione del merchandise 1', 'MERCH', 19.99, 30, FALSE, 'merch1.jpg', NULL, NULL, NULL),
+('Accessorio 1', 'Descrizione accessorio 1', 'ACCESSORI', 14.99, 15, TRUE, NULL, NULL, NULL, NULL),
+('Prodotto Speciale 1', 'Descrizione del prodotto speciale 1', 'SPECIALE', 99.99, 10, TRUE, 'speciale1.jpg', NULL, NULL, NULL),
+('Altro 1', 'Descrizione di un altro prodotto', 'ALTRO', 9.99, 80, FALSE, NULL, NULL, NULL, NULL),
+('Prodotto Prevendita 2', 'Descrizione del prodotto in prevendita 2', 'PREVENDITA', 79.99, 50, TRUE, 'prevendita2.jpg', '2025-01-15', '2025-02-15', 15.00),
+('Gioco 2', 'Descrizione del gioco 2', 'GAMES', 49.99, 25, TRUE, 'game2.jpg', NULL, NULL, NULL),
+('Merchandise 2', 'Descrizione del merchandise 2', 'MERCH', 24.99, 40, TRUE, 'merch2.jpg', NULL, NULL, NULL);
+
 
 INSERT INTO `ordine` (utente_id, data_ordine, data_consegna, stato_ordine, indirizzo_spedizione) VALUES
 (1, '2025-01-05 14:30:00', NULL, 'IN LAVORAZIONE', 'Via Roma 1, Milano'),

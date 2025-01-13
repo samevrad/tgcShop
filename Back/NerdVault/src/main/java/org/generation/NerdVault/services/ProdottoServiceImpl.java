@@ -5,11 +5,10 @@ import java.util.Optional;
 
 import org.generation.NerdVault.dtos.ProdottoDto;
 import org.generation.NerdVault.entities.Prodotto;
+import org.generation.NerdVault.enums.ProdottoCategoria;
 import org.generation.NerdVault.repositories.ProdottoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import enums.ProdottoCategoria;
 
 @Service
 public class ProdottoServiceImpl implements ProdottoService {
