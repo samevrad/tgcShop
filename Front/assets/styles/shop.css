@@ -1,3 +1,9 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .navbar{
     height: 70px;
     box-shadow: 0 0 5px 0 ;
@@ -38,3 +44,20 @@
         color: rgb(255, 255, 255,0.75) !important;
     }
 }
+
+#container-prodotti{
+    margin: 0!important ;
+    padding-top: 70px;
+    background-color: bisque;
+    color: darkred;
+}
+
+#price-range{
+    color: black;
+}
+
+.form-range{
+    accent-color: #ff5733; /* Colore principale del controllo */
+    height: 10px; /* Altezza del track */
+}
+/* AGGIUNGERE IL FILE SASS PER PERSONALIZZAZIONI */
