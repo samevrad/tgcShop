@@ -6,6 +6,7 @@ package org.generation.NerdVault.dtos;
 //import java.sql.Date; // è specifico per JDBC e database relazionali, nel contesto di un DTO (che non mappa direttamente il database) potrebbe essere sostituito con un tipo di data più generico come LocalDate
 import java.time.LocalDate;
 
+import org.generation.NerdVault.entities.Utente;
 import org.generation.NerdVault.enums.UtenteRuolo;
 
 
@@ -71,7 +72,6 @@ public class UtenteDto {
 	public UtenteDto() {
 	}
 	
-	
 	// perché id nel costruttore?
 	public UtenteDto(int utenteId, String nome, String cognome, LocalDate dataNascita, String email,
 			UtenteRuolo ruolo) {
@@ -81,6 +81,15 @@ public class UtenteDto {
 		this.dataNascita = dataNascita;
 		this.email = email;
 		this.ruolo = ruolo;
+	}
+	
+	public UtenteDto(Utente utente) {
+		this.utenteId = utente.getUtenteId();
+		this.nome = utente.getNome();
+		this.cognome = utente.getCognome();
+		this.dataNascita = utente.getDataNascita();
+		this.email = utente.getEmail();
+		this.ruolo = utente.getRuolo();
 	}
 	
 }

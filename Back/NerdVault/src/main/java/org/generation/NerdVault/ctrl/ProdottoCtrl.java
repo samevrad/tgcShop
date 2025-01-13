@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.generation.NerdVault.dtos.ProdottoDto;
+import org.generation.NerdVault.dtos.UtenteDto;
 import org.generation.NerdVault.entities.Prodotto;
 import org.generation.NerdVault.enums.ProdottoCategoria;
+import org.generation.NerdVault.enums.UtenteRuolo;
 import org.generation.NerdVault.services.ProdottoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.servlet.http.HttpSession;
 
 // Indica che la classe è un controller e che restituirà dati (ad esempio JSON) anziché una vista HTML.
 // Si combina con @RequestMapping per specificare un prefisso URL.
@@ -73,17 +77,23 @@ public class ProdottoCtrl {
 	}
 	
 	@PutMapping
-	public ResponseEntity<?> updateOne(@RequestBody Prodotto prodotto) {
-		// DA IMPLEMENTARE CONTROLLO ADMIN
+	public ResponseEntity<?> updateOne(@RequestBody Prodotto prodotto, HttpSession session) {
+		// TEST CONTROLLO ADMIN
 		try {
-			Prodotto trovato = prodottoService.cercaPerId(prodotto.getProdottoId());
-			
-			if (trovato != null && prodotto.getProdottoId() == trovato.getProdottoId()) {
-				ProdottoDto dto = prodottoService.aggiorna(trovato, prodotto);
-				return ResponseEntity.ok(dto);
+			UtenteDto curr = (UtenteDto) session.getAttribute("currentUser");
+			if (curr != null && curr.getRuolo() == UtenteRuolo.ADMIN) {
+					
+				Prodotto trovato = prodottoService.cercaPerId(prodotto.getProdottoId());
 				
+				if (trovato != null && prodotto.getProdottoId() == trovato.getProdottoId()) {
+					ProdottoDto dto = prodottoService.aggiorna(trovato, prodotto);
+					return ResponseEntity.ok(dto);
+					
+				} else {
+					return ResponseEntity.badRequest().body("Errore: prodotto non trovato");
+				}
 			} else {
-				return ResponseEntity.badRequest().body("Errore: prodotto non trovato");
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Non sei autorizzato a visualizzare questa pagina");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,15 +102,21 @@ public class ProdottoCtrl {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteById(@PathVariable int id) {
+	public ResponseEntity<?> deleteById(@PathVariable int id, HttpSession session) {
 		// DA IMPLEMENTARE CONTROLLO ADMIN
 		try {
-			Prodotto trovato = prodottoService.cercaPerId(id);
-			if (trovato != null) {
-				prodottoService.cancellaProdotto(id);
-				return ResponseEntity.ok("Cancellato prodotto id = " + id);
+			UtenteDto curr = (UtenteDto) session.getAttribute("currentUser");
+			if (curr != null && curr.getRuolo() == UtenteRuolo.ADMIN) {
+				Prodotto trovato = prodottoService.cercaPerId(id);
+				if (trovato != null) {
+					prodottoService.cancellaProdotto(id);
+					return ResponseEntity.ok("Cancellato prodotto id = " + id);
+				}
+				return ResponseEntity.badRequest().body("Errore: prodotto non trovato");
+			} else {
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Non sei autorizzato a visualizzare questa pagina");
 			}
-			return ResponseEntity.badRequest().body("Errore: prodotto non trovato");
+				
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.internalServerError().body(new ProdottoDto()); // 500
