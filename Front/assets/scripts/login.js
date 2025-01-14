@@ -98,12 +98,12 @@
 // checkLoggato();
 
 document.addEventListener('DOMContentLoaded', () => {
-    const loginButton = document.querySelector('button[type="submit"]'); // Il bottone per il login
+    const loginButton = document.querySelector('button[type="submit"]'); 
     const usernameInput = document.querySelector('#username');
     const passwordInput = document.querySelector('#password');
     
     loginButton.addEventListener('click', async (e) => {
-      e.preventDefault(); // Previeni il comportamento di default del form
+      e.preventDefault(); 
   
       const username = usernameInput.value;
       const password = passwordInput.value;
@@ -124,14 +124,14 @@ document.addEventListener('DOMContentLoaded', () => {
           });
   
           if (response.ok) {
-            // Se il login ha successo
+            
             const loggedInUser = await response.json();
   
-            // Salva l'utente in localStorage
+            
             localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
   
-            // Reindirizza l'utente alla pagina protetta (ad esempio, storico ordini)
-            window.location.href = '/storico-ordini.html';
+           
+            window.location.href = '/user.html';
           } else {
             alert('Credenziali non valide!');
           }
