@@ -52,7 +52,6 @@ public class Prodotto {
 	@Column(nullable = true)
 	private LocalDate dataUscita;
 	
-	//@JsonInclude(JsonInclude.Include.NON_NULL)
 	@Column(nullable = true)
 	private Double scontoPrevendita;
 	
