@@ -82,10 +82,6 @@ Restituisce dati formattati per il client (ad esempio, una risposta JSON o HTML)
 Una lista degli Endpoint dell'applicazione:
 
 ## Utente
-* GET api/utente - Ritorna la lista di tutti gli utenti;
-* GET api/utente/{id} - Ritorna l'utente desiderato specificando l'id;
-* GET api/utente/curr - Ritorna l'utente loggato all'interno della Sessione (da testare);
-
 | Method   | URL                                      | Description                              |
 | -------- | ---------------------------------------- | ---------------------------------------- |
 | `GET`    | `/api/utente`                            | Ritorna la lista di tutti gli utenti.    |
