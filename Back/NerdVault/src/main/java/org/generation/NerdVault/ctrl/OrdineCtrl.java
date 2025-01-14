@@ -52,6 +52,7 @@ public class OrdineCtrl {
 	@PutMapping("/{id}")
 	public ResponseEntity<?> modificaOrdine(@PathVariable("id") int ordineId, Ordine ordine) {
 		try {
+			ordine.setOrdineId(ordineId);
 			Ordine daModificare = ordineService.getById(ordineId);
 			if (daModificare != null && daModificare.getOrdineId() == ordine.getOrdineId()) {
 				OrdineDto dto = ordineService.aggiorna(daModificare, ordine);

@@ -102,6 +102,8 @@ Una lista degli Endpoint dell'applicazione:
 | Method   | URL                                      | Description                              |
 | -------- | ---------------------------------------- | ---------------------------------------- |
 | `GET`    | `/api/ordine`                            | Ritorna la lista di tutti gli ordini.    |
+| `POST`   | `/api/ordine`                            | Richiede JSON di Ordine nel body, inserisce il nuovo ordine all'interno del DB. |
+| `PUT`    | `/api/ordine/{id}`                       | Riciede JSON di Ordine nel body, modifica l'ordine con id specificato. |
 | `GET`    | `/api/ordine/u/{UtenteId}`               | Ritorna la lista di tutti gli ordini per l'utente con l'id specificato. |
 
 ## Login
