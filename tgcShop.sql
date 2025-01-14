@@ -38,14 +38,12 @@ CREATE TABLE IF NOT EXISTS `prodotto` (
     `sconto_prevendita` DECIMAL(4,2) DEFAULT NULL
 );
 
-
-
 CREATE TABLE IF NOT EXISTS `ordine` (
 	`ordine_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `utente_id` INT NOT NULL,
     `data_ordine` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     `data_consegna` DATETIME DEFAULT NULL,
-	`stato_ordine` ENUM ('SPEDITO', 'CONSEGNATO', 'IN LAVORAZIONE', 'CANCELLATO') DEFAULT 'IN LAVORAZIONE',
+	`stato_ordine` ENUM ('SPEDITO', 'CONSEGNATO', 'IN_LAVORAZIONE', 'CANCELLATO') DEFAULT 'IN_LAVORAZIONE',
     `indirizzo_spedizione` VARCHAR(75) NOT NULL,
     
     FOREIGN KEY (`utente_id`) REFERENCES utente(utente_id)
@@ -77,16 +75,16 @@ INSERT INTO `prodotto` (nome, descrizione, categoria, prezzo, rimanenza, abilita
 select * from prodotto;
 
 INSERT INTO `ordine` (utente_id, data_ordine, data_consegna, stato_ordine, indirizzo_spedizione) VALUES
-(1, '2025-01-05 14:30:00', NULL, 'IN LAVORAZIONE', 'Via Roma 1, Milano'),
+(1, '2025-01-05 14:30:00', NULL, 'IN_LAVORAZIONE', 'Via Roma 1, Milano'),
 (2, '2025-01-06 10:15:00', '2025-01-09 16:00:00', 'CONSEGNATO', 'Via Torino 12, Torino'),
 (1, '2025-01-07 17:45:00', NULL, 'SPEDITO', 'Via Milano 24, Roma'),
 (2, '2025-01-08 09:00:00', NULL, 'CANCELLATO', 'Via Napoli 8, Napoli'),
-(1, '2025-01-09 11:20:00', NULL, 'IN LAVORAZIONE', 'Via Venezia 3, Venezia'),
+(1, '2025-01-09 11:20:00', NULL, 'IN_LAVORAZIONE', 'Via Venezia 3, Venezia'),
 (2, '2025-01-09 13:30:00', NULL, 'SPEDITO', 'Via Firenze 5, Firenze'),
-(1, '2025-01-10 08:45:00', NULL, 'IN LAVORAZIONE', 'Via Genova 6, Genova'),
+(1, '2025-01-10 08:45:00', NULL, 'IN_LAVORAZIONE', 'Via Genova 6, Genova'),
 (2, '2025-01-10 12:00:00', NULL, 'SPEDITO', 'Via Bologna 9, Bologna'),
 (1, '2025-01-11 15:30:00', NULL, 'SPEDITO', 'Via Trieste 4, Trieste'),
-(2, '2025-01-12 18:00:00', NULL, 'IN LAVORAZIONE', 'Via Palermo 7, Palermo');
+(2, '2025-01-12 18:00:00', NULL, 'IN_LAVORAZIONE', 'Via Palermo 7, Palermo');
 
 INSERT INTO `ordine_dettaglio` (ordine_id, prodotto_id, quantita, prezzo) VALUES
 (1, 1, 2, 29.99),
@@ -109,4 +107,7 @@ INSERT INTO `ordine_dettaglio` (ordine_id, prodotto_id, quantita, prezzo) VALUES
 (10, 10, 1, 24.99);
 
 SELECT * FROM prodotto;
+SELECT * FROM ordine;
+SELECT * FROM ordine_dettaglio;
+
 -- Primi insert DB

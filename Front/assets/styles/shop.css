@@ -45,15 +45,41 @@ body{
     }
 }
 
+#prodotti{
+    margin-left: 250px;
+    /*overflow-y: auto;
+    border: 2px solid #ddd;; */
+}
+
 #container-prodotti{
     margin: 0!important ;
-    padding-top: 70px;
+    padding-top: 100px;
     background-color: bisque;
     color: darkred;
 }
 
+#filtri{
+position: fixed; /* Posizione fissa */
+  top: 150px; /* Incolla il filtro nella parte superiore della pagina */
+  left: 0; /* Allinea il filtro a sinistra */
+  width: 200px; /* Larghezza fissa per la barra dei filtri */
+  height: 100vh; /* Altezza che occupa l'intero schermo */
+  /*overflow-y: auto; /* Aggiungi uno scroll interno se necessario */
+  /*background-color: #f8f9fa; /* Colore di sfondo */
+  padding: 10px; /* Spazi interni */
+  z-index: 100; 
+}
+
+#valore-disponibili{
+    position: fixed;
+    top: 100px;
+    left:250px;
+    z-index:100;
+}
+
 #price-range{
     color: black;
+    margin-bottom: 2rem;
 }
 
 .form-range{
@@ -65,3 +91,23 @@ body{
 .card{
     background-color: none!important;
 }
+
+.fixed{
+    position: fixed;
+}
+
+.section-title{
+    text-align: center;
+}
+
+.discount{
+    text-decoration: line-through;
+    color: gray;
+    display: inline;
+}
+.newPrice{
+    color: red;
+    display: inline;
+}
+
+/* MEDIA QUERY SPACING SMALL - RIMUOVERE MARGIN LEFT PRODOTTI */

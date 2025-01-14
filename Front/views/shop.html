@@ -42,23 +42,45 @@ dell’evento come parametro url -->
         <div class="container-fluid row"  id="container-prodotti" >
                 
             <!-- SEZIONE FILTRI -->
-            <div class="col-xs-12 col-sm-2 d-flex flex-column" id="filtri">
+            <div class="col-xs-12 col-sm-2 d-flex flex-column fixed" id="filtri">
                 <h1>All products</h1>
                 <h2>Filters</h2>
-                <label for="price-range" class="form-label"> Price</label>
+                <label for="price-range" class="form-label" style="margin-top: 1rem;"> Price</label>
                 <input type="range" class="form-range" id="price-range">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="Check1">
+                    <label class="form-check-label" for="Check1">Games</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="Check2">
+                    <label class="form-check-label" for="Check2">Merch</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="Check3">
+                    <label class="form-check-label" for="Check3">Accessories</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="Check4">
+                    <label class="form-check-label" for="Check4">Specials</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="Check5">
+                    <label class="form-check-label" for="Check5">Other</label>
+                  </div>
             </div>
             <!-- FINE SEZIONE FILTRI -->
 
             <!-- Sezione prodotti -->
-            <div class="col-xs-12 col-sm-10 flex-column align-items-center">
+            <div class="col-xs-12 col-sm-10 flex-column align-items-center" id="prodotti">
+                <p id="valore-disponibili"> </p> <!--get dei prodotti per numero-->
                 <!-- SEZIONE PRODOTTI DISPONIBILI -->
+                <h1 class="section-title">  Available Products </h1>
                 <div id="available-container" class="row">
-                    <p id="valore-disponibili"> 57 </p> <!--get dei prodotti per numero-->
 
                 </div>
                 <!-- SEZIONE PRODOTTI PRENOTABILI -->
-                <div>
+                <h1 class="section-title"> Presale products  </h1>
+                <div id="presale-container" class="row">
 
                 </div>
             </div>

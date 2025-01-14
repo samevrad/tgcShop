@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import org.generation.NerdVault.enums.OrdineStato;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+@Entity
 public class Ordine {
 
 	@Id
@@ -23,13 +25,13 @@ public class Ordine {
 	@JoinColumn(name = "utente_id", nullable = false)
 	private Utente utente;
 	
-	@Column(length = 75, nullable = false)
+	@Column(nullable = false)
 	private LocalDate dataOrdine;
 	
-	@Column(length = 75, nullable = true)
+	@Column(nullable = true)
 	private LocalDate dataConsegna;
 	
-	@Column(columnDefinition = "ENUM('SPEDITO', 'CONSEGNATO', 'IN LAVORAZIONE', 'CANCELLATO')")
+	@Column(columnDefinition = "ENUM('SPEDITO', 'CONSEGNATO', 'IN_LAVORAZIONE', 'CANCELLATO')")
 	@Enumerated(EnumType.STRING)
 	private OrdineStato statoOrdine;
 	
