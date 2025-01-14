@@ -17,44 +17,43 @@ import jakarta.persistence.Table;
 @Table(name = "prodotto")
 public class Prodotto {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int prodottoId;
-	
-	@Column(nullable = false)
-	private String nome;
-	
-	@Column(nullable = false)
-	private String descrizione;
-	
-	@Column(columnDefinition = "ENUM('NOVITA', 'PREVENDITA', 'GAMES', 'MERCH', 'ACCESSORI', 'SPECIALE', 'ALTRO')", nullable = false)
-	@Enumerated(EnumType.STRING)
-	private ProdottoCategoria categoria;
-	
-	@Column(nullable = false)
-	private double prezzo;
-	
-	@Column(nullable = false)
-	private int rimanenza;
-	
-	@Column(nullable = false)
-	private boolean abilitato;
-	
-	@Column(nullable = false)
-	private boolean visibile;
-	
-	@Column(length = 75, nullable = true)
-	private String immagine;
-	
-	@Column(nullable = true)
-	private LocalDate inizioPrevendita;
-	
-	@Column(nullable = true)
-	private LocalDate dataUscita;
-	
-	//@JsonInclude(JsonInclude.Include.NON_NULL)
-	@Column(nullable = true)
-	private Double scontoPrevendita;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int prodottoId;
+    
+    @Column(nullable = false)
+    private String nome;
+    
+    @Column(nullable = false)
+    private String descrizione;
+    
+    @Column(columnDefinition = "ENUM('NOVITA', 'PREVENDITA', 'GAMES', 'MERCH', 'ACCESSORI', 'SPECIALE', 'ALTRO')", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ProdottoCategoria categoria;
+    
+    @Column(nullable = false)
+    private double prezzo;
+    
+    @Column(nullable = false)
+    private int rimanenza;
+    
+    @Column(nullable = false)
+    private boolean abilitato;
+    
+    @Column(nullable = false)
+    private boolean visibile;
+    
+    @Column(length = 75, nullable = true)
+    private String immagine;
+    
+    @Column(nullable = true)
+    private LocalDate inizioPrevendita;
+    
+    @Column(nullable = true)
+    private LocalDate dataUscita;
+    
+    @Column(nullable = true)
+    private Double scontoPrevendita;
 	
 	/*------------------ Getters / Setters ------------------*/
 
