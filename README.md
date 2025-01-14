@@ -86,18 +86,30 @@ Una lista degli Endpoint dell'applicazione:
 * GET api/utente/{id} - Ritorna l'utente desiderato specificando l'id;
 * GET api/utente/curr - Ritorna l'utente loggato all'interno della Sessione (da testare);
 
+| Method   | URL                                      | Description                              |
+| -------- | ---------------------------------------- | ---------------------------------------- |
+| `GET`    | `/api/utente`                            | Ritorna la lista di tutti gli utenti.    |
+| `GET`    | `/api/utente/{id}`                       | Ritorna l'utente desiderato specificando l'id. |
+| `GET`    | `/api/utente/curr`                       | Ritorna l'utente loggato all'interno della Sessione (da testare). |
+
 ## Prodotto
-* GET api/prodotto - Ritorna la lista di tutti i prodotti inseriti nel DB;
-* POST api/prodotto - Richiede JSON di Prodotto nel body, inserisce il nuovo prodotto all'interno del DB;
-* GET api/prodotto/{id} - Ritorna il prodotto desiderato specificandone l'id;
-* PUT api/prodotto/{id} - Richiede JSON di Prodotto nel body, modifica il prodotto di id specificato;
-* DELETE api/prodotto/{id} - Cancella dal DB il prodotto di id specificato;
-* GET api/prodotto/categoria/{c} - Ritorna la lista di tutti i prodotti appartenenti alla categoria specificata;
+| Method   | URL                                      | Description                              |
+| -------- | ---------------------------------------- | ---------------------------------------- |
+| `GET`    | `/api/prodotto`                          | Ritorna la lista di tutti i prodotti.    |
+| `POST`   | `/api/prodotto`                          | Richiede JSON di Prodotto nel body, inserisce il nuovo prodotto all'interno del DB. |
+| `GET`    | `/api/prodotto/{id}`                     | Ritorna il prodotto desiderato specificandone l'id. |
+| `PUT`    | `/api/prodotto/{id}`                     | Richiede JSON di Prodotto nel body, modifica il prodotto di id specificato. |
+| `DELETE` | `/api/prodotto/{id}`                     | Cancella dal DB il prodotto di id specificato. |
+| `GET`    | `/api/prodotto/categoria/{c}`            | Ritorna la lista di tutti i prodotti appartenenti alla categoria specificata. |
 
 ## Ordine
-* GET api/ordine - Ritorna la lista di tutti gli ordini nel DB;
-* GET api/ordine/u/{Utente_Id} - Ritorna la lista di tutti gli ordini per l'utente con l'id specificato;
+| Method   | URL                                      | Description                              |
+| -------- | ---------------------------------------- | ---------------------------------------- |
+| `GET`    | `/api/ordine`                            | Ritorna la lista di tutti gli ordini.    |
+| `GET`    | `/api/ordine/u/{UtenteId}`               | Ritorna la lista di tutti gli ordini per l'utente con l'id specificato. |
 
 ## Login
-* POST auth/login - Richiede JSON di UtenteSessione (email, password) per effettuare il login e salvare l'utente in sessione;
-* POST auth/logout - Invalida la sessione HttpSession, effettua il logout dell'utente;
+| Method   | URL                                      | Description                              |
+| -------- | ---------------------------------------- | ---------------------------------------- |
+| `POST`    | `/auth/login`                           | Richiede JSON di UtenteSessione (email, password) per effettuare il login e salvare l'utente in sessione. |
+| `POST`    | `/auth/logout`                          | Invalida la sessione HttpSession, effettua il logout dell'utente. |
