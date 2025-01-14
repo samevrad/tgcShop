@@ -45,6 +45,46 @@ body{
     }
 }
 
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgb(165,55,240);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: white;
+    color: rgb(165,55,240);
+}
+
+.navigation {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.navigation button {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.navigation button:hover {
+    background: rgba(255, 254, 254, 0.8);
+}
+
 #prodotti{
     margin-left: 250px;
     /*overflow-y: auto;

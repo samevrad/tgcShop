@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html">Login</a>
+                        <button type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="pannello.html">Pannello</a>
@@ -30,6 +30,40 @@
             </div>
         </div>
     </nav>
+    <!-- MODALE LOGIN +++ VA CON LA NAVBAR -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="#exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="">Login</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> <!-- da togliere -->
+            </div>
+            <div class="modal-body">
+              <form class="needs-validation" novalidate>
+                <div class="mb-3">
+                  <label for="inputEMail" class="col-form-label">E-mail</label>
+                  <input type="email" class="form-control" id="inputEMail" placeholder="michele@macaco.calabria" required> 
+                  <div class="invalid-feedback">
+                    Please insert an E-mail
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="inputPassword" class="col-form-label">Password</label>
+                  <input type="text" class="form-control" id="inputPassword" required>
+                  <div class="invalid-feedback">
+                    Please insert a password
+                  </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Invia</button>
+                  </div>
+              </form>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+     <!-- FINE MODALE LOGIN +++ VA CON LA NAVBAR --> 
 
     <!-- SLIDER HERO -->
     <div class="hero-slider">
@@ -63,10 +97,16 @@
     </div>
     <!-- FINE SLIDER HERO -->
 
+    <!-- PARALLAX 2 -->
+    <div class="parallax parallax2"></div>
+
     <h2 class="mb-3 mt-5 section-title">New Products</h2>
     <!-- NEW PRODUCTS GRID -->
     <div class="product-grid my-5" id="new-products"></div>
     <!-- FINE NEW PRODUCTS GRID -->
+
+    <!-- PARALLAX 3 -->
+    <div class="parallax parallax3"></div>
 
     <h2 class="mb-3 mt-5 section-title">Best Sellers</h2>
     <!-- BEST SELLERS GRID -->
