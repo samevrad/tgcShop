@@ -4,12 +4,7 @@ public enum OrdineStato {
 
 	SPEDITO, 
 	CONSEGNATO, 
-	IN_LAVORAZIONE {
-		@Override
-		public String toString() {
-			return "IN LAVORAZIONE";
-		}
-	}, 
+	IN_LAVORAZIONE, 
 	CANCELLATO
 	
 }
