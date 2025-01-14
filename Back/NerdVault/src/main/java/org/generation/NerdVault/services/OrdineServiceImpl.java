@@ -38,29 +38,37 @@ public class OrdineServiceImpl implements OrdineService{
 	}
 	
 	@Override
+	public Ordine getById(int id) {
+		return ordineRepo.findById(id).get();
+	}
+	
+	@Override
 	public List<OrdineDto> prendiConUtenteId(int utenteId) {
-//		Optional<List<Ordine>> ordini = ordineRepo.findByUtenteId(utenteId);
 		ArrayList<OrdineDto> dtos = new ArrayList<OrdineDto>();
 		List<OrdineDto> result = prendiTutti();
-		
 		result.forEach(ordine -> {
 					if (ordine.getUtente().getUtenteId() == utenteId) {
 						dtos.add(ordine);
 					}
 		});
-		
 		return dtos;
-		
-//		if (ordini.isPresent()) {
-//			return ordini.get();
-//		} else {
-//			return new ArrayList<Ordine>();
-//		}
 	}
 	
-	public OrdineDto nuovoOrdine(Ordine ordine) {
+	public OrdineDto aggiungi(Ordine ordine) {
 		ordineRepo.save(ordine);
 		return this.toOrdineDto(ordine);
+	}
+	
+	public OrdineDto aggiorna(Ordine daModificare, Ordine ordine) {
+		daModificare.setUtente(ordine.getUtente());
+		daModificare.setDataOrdine(ordine.getDataOrdine());
+		daModificare.setDataConsegna(ordine.getDataConsegna());
+		daModificare.setStatoOrdine(ordine.getStatoOrdine());
+		daModificare.setIndirizzoSpedizione(ordine.getIndirizzoSpedizione());
+		
+		ordineRepo.save(daModificare);
+		
+		return this.toOrdineDto(daModificare);
 	}
 	
 	public void cancellaOrdine(int id) {

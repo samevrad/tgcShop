@@ -19,7 +19,6 @@ public class ProdottoServiceImpl implements ProdottoService {
 	@Override
 	public List<Prodotto> prendiTutti() {
 		List<Prodotto> prodotti = prodottoRepo.findAll();
-		
 		return prodotti;
 	}
 
