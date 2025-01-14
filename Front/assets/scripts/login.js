@@ -97,10 +97,31 @@
 
 // checkLoggato();
 
+// SCRIPT DEL MODALE LOGIN - VA AGGIUNTA FUNZIONALITA' CRUD
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+// FINE SCRIPT DEL MODALE LOGIN - VA AGGIUNTA FUNZIONALITA' CRUD
+
 document.addEventListener('DOMContentLoaded', () => {
-    const loginButton = document.querySelector('button[type="submit"]'); 
-    const usernameInput = document.querySelector('#username');
-    const passwordInput = document.querySelector('#password');
+    const loginButton = document.getElementById('loginButton'); 
+    const usernameInput = document.getElementById('inputEMail');
+    const passwordInput = document.getElementById('inputPassword');
     
     loginButton.addEventListener('click', async (e) => {
       e.preventDefault(); 
@@ -131,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
   
            
-            window.location.href = '/user.html';
+            window.location.href = 'index.html';
           } else {
             alert('Credenziali non valide!');
           }
