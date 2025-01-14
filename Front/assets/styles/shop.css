@@ -95,4 +95,8 @@ position: fixed; /* Posizione fissa */
     position: fixed;
 }
 
+.section-title{
+    text-align: center;
+}
+
 /* MEDIA QUERY SPACING SMALL - RIMUOVERE MARGIN LEFT PRODOTTI */
