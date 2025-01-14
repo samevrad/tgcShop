@@ -2,6 +2,7 @@ package org.generation.NerdVault.entities;
 
 import java.time.LocalDate;
 
+import org.generation.NerdVault.config.CustomProperties;
 import org.generation.NerdVault.enums.ProdottoCategoria;
 
 import jakarta.persistence.Column;
@@ -112,9 +113,17 @@ public class Prodotto {
 	public void setAbilitato(boolean abilitato) {
 		this.abilitato = abilitato;
 	}
+	
+	public String getUrl() {
+		if (immagine == null || immagine.equals("")) {
+			return "/" + CustomProperties.DEFAULT_IMG_PATH;
+		}
+		return "/" + CustomProperties.IMG_FOLDER_PATH + "/" + immagine;
+	}
 
 	public String getImmagine() {
-        return immagine != null ? immagine : "/assets/img/non-disponibile.jpg";
+//        return immagine != null ? immagine : "/assets/img/non-disponibile.jpg";
+		return immagine;
     }
 
 	public void setImmagine(String immagine) {

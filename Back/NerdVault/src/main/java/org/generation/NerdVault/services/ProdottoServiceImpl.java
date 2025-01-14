@@ -1,14 +1,24 @@
 package org.generation.NerdVault.services;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.generation.NerdVault.config.CustomProperties;
 import org.generation.NerdVault.dtos.ProdottoDto;
 import org.generation.NerdVault.entities.Prodotto;
 import org.generation.NerdVault.enums.ProdottoCategoria;
 import org.generation.NerdVault.repositories.ProdottoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ProdottoServiceImpl implements ProdottoService {
@@ -17,30 +27,90 @@ public class ProdottoServiceImpl implements ProdottoService {
 	ProdottoRepository prodottoRepo;
 
 	@Override
-	public List<Prodotto> prendiTutti() {
+	public List<ProdottoDto> prendiTutti() {
 		List<Prodotto> prodotti = prodottoRepo.findAll();
-		return prodotti;
+		
+		ArrayList<ProdottoDto> p = new ArrayList<ProdottoDto>();
+		prodotti.forEach(prodotto -> p.add(this.toProdottoDto(prodotto)));
+		
+		return p;
 	}
 
 	@Override
 	public Prodotto cercaPerId(int id) {
 		Optional<Prodotto> opt = prodottoRepo.findById(id);
-		if(opt.isPresent()) {
+		if (opt.isPresent()) {
 			return opt.get();
-		} else return null;
+		}
+		return null;
+	}
+	
+	@Override
+	public ProdottoDto cercaPerIdDto(int id) {
+		Optional<Prodotto> opt = prodottoRepo.findById(id);
+		if(opt.isPresent()) {
+			return this.toProdottoDto(opt.get());
+		}
+		return null;
 	}
 
 	@Override
-	public List<Prodotto> cercaPerCategoria(ProdottoCategoria categoria) {
-//	public List<Prodotto> cercaPerCategoria(String categoria) {
-		List<Prodotto> p = prodottoRepo.findByCategoria(categoria);
+	public List<ProdottoDto> cercaPerCategoria(ProdottoCategoria categoria) {
+		List<Prodotto> prodotti = prodottoRepo.findByCategoria(categoria);
+		
+		ArrayList<ProdottoDto> p = new ArrayList<ProdottoDto>();
+		prodotti.forEach(prodotto -> p.add(this.toProdottoDto(prodotto)));
+		
 		return p;
 	}
-
+	
 	@Override
 	public ProdottoDto aggiungi(Prodotto prodotto) {
 		Prodotto prod = prodottoRepo.save(prodotto);
 		return this.toProdottoDto(prod);
+	}
+
+	@Override
+	public ProdottoDto aggiungiConImg(Prodotto prodotto, MultipartFile multipartFile) {
+		
+		// Controllo se è stata caricata un'immagine
+		if(multipartFile == null || multipartFile.isEmpty()) {
+			// Senza immagine, salvo comunque il veicolo
+			Prodotto prod = prodottoRepo.save(prodotto);
+			return this.toProdottoDto(prod);
+		}
+		
+		// Se esiste l'immagine da salvare 
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename().strip().replace(" ","-"));
+		
+		// Setto nome file prima di salvare il prodotto
+		prodotto.setImmagine(fileName);
+		Prodotto p = prodottoRepo.save(prodotto);
+		
+		// Genero percorso dove salvare l'immagine
+		String uploadDir = CustomProperties.IMG_FOLDER_PATH;
+		
+		try {
+			// Converte percorso stringa in un path
+			Path uploadPath = Paths.get(uploadDir);
+			
+			if(!Files.exists(uploadPath)) {
+				// Crea cartella dove salvare l'immagine se non esiste
+				Files.createDirectories(uploadPath);
+			}
+			try (InputStream inputStream = multipartFile.getInputStream()) {
+				Path filePath = uploadPath.resolve(fileName);
+				// Sovrascrive file se già presente con stesso nome
+				Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException ioe) {
+				throw new IOException("Could not save img file: " + fileName, ioe);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return this.toProdottoDto(p);
+		
 	}
 
 	@Override
@@ -82,6 +152,7 @@ public class ProdottoServiceImpl implements ProdottoService {
 				prodotto.getDataUscita(), 
 				prodotto.getScontoPrevendita()
 				);
+		dto.setImgUrl(prodotto.getUrl()); // settiamo l'immagine nel dto con l'url composito
 		return dto;
 	}
 

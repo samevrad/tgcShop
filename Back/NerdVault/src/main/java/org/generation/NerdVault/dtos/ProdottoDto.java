@@ -19,6 +19,7 @@ public class ProdottoDto {
 	private boolean abilitato;
 	private boolean visibile;
 	private String immagine;
+	private String imgUrl;
 	private LocalDate inizioPrevendita;
 	private LocalDate dataUscita;
 	private double scontoPrevendita;
@@ -29,66 +30,95 @@ public class ProdottoDto {
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getDescrizione() {
 		return descrizione;
 	}
+
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
+
 	public int getProdottoId() {
 		return prodottoId;
 	}
+
 	public void setProdottoId(int prodottoId) {
 		this.prodottoId = prodottoId;
 	}
+
 	public ProdottoCategoria getCategoria() {
 		return categoria;
 	}
+
 	public void setCategoria(ProdottoCategoria categoria) {
 		this.categoria = categoria;
 	}
+
 	public double getPrezzo() {
 		return prezzo;
 	}
+
 	public void setPrezzo(double prezzo) {
 		this.prezzo = prezzo;
 	}
+
 	public int getRimanenza() {
 		return rimanenza;
 	}
+
 	public void setRimanenza(int rimanenza) {
 		this.rimanenza = rimanenza;
 	}
+
 	public boolean isAbilitato() {
 		return abilitato;
 	}
+
 	public void setAbilitato(boolean abilitato) {
 		this.abilitato = abilitato;
 	}
+
 	public String getImmagine() {
 		return immagine;
 	}
+
 	public void setImmagine(String immagine) {
 		this.immagine = immagine;
 	}
+	
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
 	public LocalDate getInizioPrevendita() {
 		return inizioPrevendita;
 	}
+
 	public void setInizioPrevendita(LocalDate inizioPrevendita) {
 		this.inizioPrevendita = inizioPrevendita;
 	}
+
 	public LocalDate getDataUscita() {
 		return dataUscita;
 	}
+
 	public void setDataUscita(LocalDate dataUscita) {
 		this.dataUscita = dataUscita;
 	}
+
 	public double getScontoPrevendita() {
 		return scontoPrevendita;
 	}
+
 	public void setScontoPrevendita(double scontoPrevendita) {
 		this.scontoPrevendita = scontoPrevendita;
 	}
@@ -107,7 +137,6 @@ public class ProdottoDto {
 	public ProdottoDto(int prodottoId, String nome, String descrizione, ProdottoCategoria categoria, double prezzo,
 			int rimanenza, boolean abilitato, boolean visibile, String immagine, LocalDate inizioPrevendita, LocalDate dataUscita,
 			double scontoPrevendita) {
-		super();
 		this.prodottoId = prodottoId;
 		this.nome = nome;
 		this.descrizione = descrizione;

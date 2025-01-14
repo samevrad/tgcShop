@@ -91,12 +91,13 @@ Una lista degli Endpoint dell'applicazione:
 ## Prodotto
 | Method   | URL                                      | Description                              |
 | -------- | ---------------------------------------- | ---------------------------------------- |
-| `GET`    | `/api/prodotto`                          | Ritorna la lista di tutti i prodotti.    |
+| `GET`    | `/api/prodotto`                          | Ritorna la lista di tutti i prodotti. (DTO) |
+| `PUT`    | `/api/prodotto`                          | Richiede JSON di Prodotto nel body (compreso di prodottoId). |
 | `POST`   | `/api/prodotto`                          | Richiede JSON di Prodotto nel body, inserisce il nuovo prodotto all'interno del DB. |
-| `GET`    | `/api/prodotto/{id}`                     | Ritorna il prodotto desiderato specificandone l'id. |
-| `PUT`    | `/api/prodotto/{id}`                     | Richiede JSON di Prodotto nel body, modifica il prodotto di id specificato. |
+| `POST`   | `/api/prodotto/alt`                      | Richiede `FormData()` a cui fare l'append di `("prodotto", JSON.stringify(PRODOTTO))` e di `("image", FILEIMMAGINE)` |
+| `GET`    | `/api/prodotto/{id}`                     | Ritorna il prodotto desiderato specificandone l'id. (DTO) |
 | `DELETE` | `/api/prodotto/{id}`                     | Cancella dal DB il prodotto di id specificato. |
-| `GET`    | `/api/prodotto/categoria/{c}`            | Ritorna la lista di tutti i prodotti appartenenti alla categoria specificata. |
+| `GET`    | `/api/prodotto/categoria/{c}`            | Ritorna la lista di tutti i prodotti appartenenti alla categoria specificata. (DTO) |
 
 ## Ordine
 | Method   | URL                                      | Description                              |
