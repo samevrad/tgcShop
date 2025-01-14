@@ -100,4 +100,14 @@ position: fixed; /* Posizione fissa */
     text-align: center;
 }
 
+.discount{
+    text-decoration: line-through;
+    color: gray;
+    display: inline;
+}
+.newPrice{
+    color: red;
+    display: inline;
+}
+
 /* MEDIA QUERY SPACING SMALL - RIMUOVERE MARGIN LEFT PRODOTTI */
