@@ -233,6 +233,32 @@ body.modal {
 }
 
 /******* PARALLAX *******/
+.parallax-logo{
+        width: auto;
+        font-family: "Pixelify Sans", sans-serif;
+        font-size: xx-large;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+}  
+    .parallax-logo .logo{
+        padding-top: 2rem;
+        max-height: 70%;
+        width: auto;
+    }
+        .parallax-logo a{
+        font-size: larger;
+        color: rgb(165,55,240);
+        text-shadow: 
+        0px 0px 5px rgba(165,55,240, 0.8),   /* Luce centrale */
+        0px 0px 15px rgba(165,55,240, 0.7),  /* Luce diffusa */
+        0px 0px 25px rgba(165,55,240, 0.6),  /* Luce più sfumata */
+        0px 0px 35px rgba(165,55,240, 0.5);  /* Luce che si dissipa */
+    }
+    .parallax a:hover {
+        color: rgba(255, 255, 255,0.75) !important;
+    }
+
 .parallax {
     background-position: center;
     background-attachment: fixed;
