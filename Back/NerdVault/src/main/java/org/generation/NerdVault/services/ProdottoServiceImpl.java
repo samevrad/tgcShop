@@ -110,7 +110,6 @@ public class ProdottoServiceImpl implements ProdottoService {
 		}
 		
 		return this.toProdottoDto(p);
-		
 	}
 
 	@Override

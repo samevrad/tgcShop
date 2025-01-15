@@ -96,6 +96,31 @@ public class ProdottoCtrl {
 		}
 	}
 	
+	@PutMapping("/alt")
+	// Richiesta PUT su URL alternativo per la gestione immagini
+	public ResponseEntity<?> updateWithImage(
+			@RequestPart(name = "prodotto") String prodottoJson, // Oggetto Prodotto sotto forma di stringa
+			@RequestPart(name = "image", required = false) MultipartFile multipartFile // File Immagine - (dovrebbe) poter mancare
+			) throws JsonMappingException, JsonProcessingException {
+		
+		// DA IMPLEMENTARE CONTROLLO ADMIN
+		
+		// Trasformo la stringa in oggetto prodotto
+		ObjectMapper obMap = new ObjectMapper();
+		Prodotto prodotto = obMap.readValue(prodottoJson, Prodotto.class);
+
+		try {
+			ProdottoDto dto = prodottoService.aggiungiConImg(prodotto, multipartFile);
+			return ResponseEntity.ok(dto);
+			
+		} catch (DataIntegrityViolationException e) {
+			return ResponseEntity.badRequest().body("Errore inserimento dati, controllare le proprietà dell'oggetto");
+			
+		}	catch (Exception e) {
+			return ResponseEntity.internalServerError().body(new ProdottoDto());
+		}
+	}
+	
 	@GetMapping("/{id}")
 	// Questa annotazione mappa una richiesta GET con un parametro dinamico nell'URL, rappresentato da {id}. In questo caso, l'ID dell'prodotto viene estratto dal percorso dell'URL e passato al metodo tramite @PathVariable.
 	public ResponseEntity<ProdottoDto> getById(@PathVariable int id) { // @PathVariable: Mappa il valore {id} dall'URL al parametro del metodo.
