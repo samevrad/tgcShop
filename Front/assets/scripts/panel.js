@@ -1,30 +1,24 @@
-
 document.addEventListener("DOMContentLoaded", () => {
-
     // Carica i prodotti all'inizio
     fetchProducts();
 
     // Gestisce l'apertura della modale per aggiungere un nuovo prodotto
     const openAddProductModalButton = document.getElementById('open-add-product-modal');
     const newProductModal = document.getElementById('new-product-modal');
-    const mainContent = document.getElementById('main-content'); // Contenitore del resto della pagina
+    const mainContent = document.getElementById('main-content');
 
     openAddProductModalButton.addEventListener('click', () => {
         const modal = new bootstrap.Modal(newProductModal);
-        modal.show(); // Mostra la modale
-
-        // Disabilita l'interazione con il resto della pagina
-        mainContent.setAttribute('inert', ''); 
+        modal.show();
+        mainContent.setAttribute('inert', ''); // Disabilita l'interazione con la pagina
     });
 
     // Gestisce la chiusura della modale
     const closeModalButton = document.querySelector('.btn-close');
     closeModalButton.addEventListener('click', () => {
         const modal = bootstrap.Modal.getInstance(newProductModal);
-        modal.hide(); // Chiudi la modale
-
-        // Rimuovi l'attributo inert dal contenuto della pagina
-        mainContent.removeAttribute('inert');
+        modal.hide();
+        mainContent.removeAttribute('inert'); // Rimuove l'attributo inert
     });
 
     // Gestisce l'invio del modulo per aggiungere un nuovo prodotto
@@ -65,9 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Prodotto aggiunto con successo!");
             fetchProducts(); // Ricarica la lista dei prodotti
             const modal = bootstrap.Modal.getInstance(newProductModal);
-            modal.hide(); // Chiudi la modale
-
-            // Rimuovi l'attributo inert dal contenuto della pagina
+            modal.hide();
             mainContent.removeAttribute('inert');
         })
         .catch(function(error) {
@@ -75,8 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // Funzione per caricare i prodotti
     function fetchProducts() {
-        const apiUrl = 'http://localhost:8080/api/prodotto'; // URL per ottenere i prodotti
+        const apiUrl = 'http://localhost:8080/api/prodotto';
 
         fetch(apiUrl)
         .then(function(response) {
@@ -94,124 +87,79 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Funzione per visualizzare i prodotti
     function displayProducts(products) {
-        const productsContainer = document.getElementById("product-cards-container");
-        productsContainer.innerHTML = ""; // Pulisce la container
+        const productsTableBody = document.getElementById("product-table-body");
+        productsTableBody.innerHTML = "";
 
         products.forEach(function(product) {
-            const productCard = createProductCard(product);
-            productsContainer.appendChild(productCard);
+            const productRow = createProductRow(product);
+            productsTableBody.appendChild(productRow);
         });
     }
 
-    function createProductCard(product) {
-        const productCard = document.createElement("div");
-        productCard.classList.add("product-card");
+    // Funzione per creare una riga della tabella con un prodotto
+    function createProductRow(product) {
+        const row = document.createElement('tr');
+        row.setAttribute('data-product-id', product.prodottoId);
 
-        const template = document.getElementById("product-template").innerHTML;
-        const form = document.createElement('div');
-        form.innerHTML = template;
+        row.innerHTML = `
+            <td><img src="${product.immagine}" alt="${product.nome}" width="50"></td>
+            <td>${product.nome}</td>
+            <td>${product.categoria}</td>
+            <td>${product.prezzo}</td>
+            <td>${product.rimanenza}</td>
+            <td>
+                <button class="btn btn-warning edit-product-btn">Modifica</button>
+                <button class="btn btn-danger delete-product-btn">Elimina</button>
+            </td>
+        `;
 
-        // Aggiungi l'ID del prodotto come attributo data-product-id
-        form.setAttribute('data-product-id', product.prodottoId);
-
-        // Precompila il modulo con i dati del prodotto
-        fillFormWithProductData(form, product);
-
-        // Gestisci il bottone di modifica
-        form.querySelector("#update-product-btn").addEventListener("click", function() {
-            const prodottoId = form.getAttribute('data-product-id');
-            console.log(prodottoId);
-            if (prodottoId) {
-                const confirmUpdate = confirm("Sei sicuro di voler modificare questo prodotto?");
-                if (confirmUpdate) {
-                    updateProduct(prodottoId, form);
-                }
-            }
+        row.querySelector('.edit-product-btn').addEventListener('click', () => {
+            openEditProductModal(product);
         });
 
-        // Gestisci il bottone di eliminazione
-        form.querySelector("#delete-product-btn").addEventListener("click", function() {
-            const prodottoId = form.getAttribute('data-product-id');
-            console.log(prodottoId);
-            
-            if (prodottoId) {
-                const confirmDelete = confirm("Sei sicuro di voler eliminare questo prodotto?");
-                if (confirmDelete) {
-                    deleteProduct(prodottoId, form);
-                }
-            }
+        row.querySelector('.delete-product-btn').addEventListener('click', () => {
+            deleteProduct(product.prodottoId, row);
         });
 
-        // Gestisci il bottone di reset
-        form.querySelector("#reset-form-btn").addEventListener("click", function() {
-            resetForm(form, product);
-        });
-
-        productCard.appendChild(form);
-        return productCard;
+        return row;
     }
 
-    function fillFormWithProductData(form, product) {
-        form.querySelector("#nome").value = product.nome;
-        form.querySelector("#descrizione").value = product.descrizione || "";
-        form.querySelector("#categoria").value = product.categoria || "";
-        form.querySelector("#prezzo").value = product.prezzo;
-        form.querySelector("#rimanenza").value = product.rimanenza;
-        form.querySelector("#abilitato").checked = product.abilitato;
-        form.querySelector("#visibile").checked = product.visibile; // Precompila il campo visibile
-        form.querySelector("#immagine").value = product.immagine || "";
-        form.querySelector("#inizio_prevendita").value = product.inizio_prevendita || "";
-        form.querySelector("#data_uscita").value = product.data_uscita || "";
-        form.querySelector("#sconto_prevendita").value = product.sconto_prevendita || "";
+    function fillFormWithProductData(product) {
+        // Precompila i campi del form nella modale di modifica
+        document.getElementById('edit-nome').value = product.nome;
+        document.getElementById('edit-descrizione').value = product.descrizione || "N/A";
+        document.getElementById('edit-categoria').value = product.categoria || "N/A";
+        document.getElementById('edit-prezzo').value = product.prezzo;
+        document.getElementById('edit-rimanenza').value = product.rimanenza;
+        document.getElementById('edit-abilitato').checked = product.abilitato;
+        document.getElementById('edit-visibile').checked = product.visibile;
+        document.getElementById('edit-immagine').value = product.immagine;
+        document.getElementById('edit-inizio_prevendita').value = product.inizio_prevendita;
+        document.getElementById('edit-data_uscita').value = product.data_uscita;
+        document.getElementById('edit-sconto_prevendita').value = product.sconto_prevendita;
+        document.getElementById('edit-product-form').dataset.productId = product.prodottoId;
     }
 
-    function updateProduct(prodottoId, form) {
-        const updatedProduct = {
-            prodottoId: prodottoId,
-            nome: form.querySelector("#nome").value,
-            descrizione: form.querySelector("#descrizione").value,
-            categoria: form.querySelector("#categoria").value,
-            prezzo: parseFloat(form.querySelector("#prezzo").value),
-            rimanenza: parseInt(form.querySelector("#rimanenza").value),
-            abilitato: form.querySelector("#abilitato").checked,
-            visibile: form.querySelector("#visibile").checked, // Aggiungi il valore del campo visibile
-            immagine: form.querySelector("#immagine").value,
-            inizioPrevendita: form.querySelector("#inizio_prevendita").value,
-            dataUscita: form.querySelector("#data_uscita").value,
-            scontoPrevendita: parseFloat(form.querySelector("#sconto_prevendita").value)
-    
-        };
-
-        // if (updatedProduct.data_uscita) {
-        //     updatedProduct.data_uscita = new Date(updatedProduct.data_uscita).toISOString().split('T')[0]; // Solo la data
-        // }
-
-        const apiUrl = `http://localhost:8080/api/prodotto`;
-
-        console.log(updatedProduct);
+    // Funzione per aprire la modale di modifica
+    function openEditProductModal(product) {
         
+        fillFormWithProductData(product);
 
-        fetch(apiUrl, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedProduct)
-        })
-        .then(function(response) {
-            if (response.ok) {
-                alert("Prodotto modificato con successo!");
-            } else {
-                throw new Error("Errore durante la modifica del prodotto");
-            }
-        })
-        .catch(function(error) {
-            console.error("Errore durante la modifica del prodotto:", error);
-        });
+        const editProductModal = document.getElementById('edit-product-modal');
+        const modal = new bootstrap.Modal(editProductModal);
+        modal.show();
+
+        // Imposta il tasto di reset con i dati originali del prodotto
+        const resetEditProductButton = document.getElementById('reset-edit-product-btn');
+        resetEditProductButton.addEventListener('click', () => {
+        resetForm(product); // Passa il prodotto corrente per ripristinare i dati originali
+    });
     }
 
-    function deleteProduct(prodottoId, form) {
+    // Funzione per eliminare un prodotto
+    function deleteProduct(prodottoId, row) {
         if (confirm("Sei sicuro di voler eliminare questo prodotto?")) {
             const apiUrl = `http://localhost:8080/api/prodotto/${prodottoId}`;
 
@@ -221,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(function(response) {
                 if (response.ok) {
                     alert("Prodotto eliminato con successo!");
-                    form.parentElement.remove(); // Rimuovi il modulo dalla vista
+                    row.remove(); // Rimuovi la riga dalla tabella
                 } else {
                     throw new Error("Errore durante l'eliminazione del prodotto");
                 }
@@ -232,12 +180,59 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function resetForm(form, product) {
-        fillFormWithProductData(form, product); // Ripristina i dati originali nel modulo
-    }
+    // Gestisce l'invio del modulo per la modifica di un prodotto
+    const editProductForm = document.getElementById('edit-product-form');
+    editProductForm.addEventListener('submit', function(event) {
+    event.preventDefault();
 
+    // Estrai l'ID del prodotto dalla modale
+    const prodottoId = editProductForm.dataset.productId;
+    const editedProduct = {
+        prodottoId: prodottoId, // Aggiungi l'ID del prodotto
+        nome: document.getElementById('edit-nome').value,
+        descrizione: document.getElementById('edit-descrizione').value,
+        categoria: document.getElementById('edit-categoria').value,
+        prezzo: parseFloat(document.getElementById('edit-prezzo').value),
+        rimanenza: parseInt(document.getElementById('edit-rimanenza').value),
+        immagine: document.getElementById('edit-immagine').value,
+        abilitato: document.getElementById('edit-abilitato').checked,
+        visibile: document.getElementById('edit-visibile').checked,
+        inizio_prevendita: document.getElementById('edit-inizio_prevendita').value,
+        data_uscita: document.getElementById('edit-data_uscita').value,
+        sconto_prevendita: parseFloat(document.getElementById('edit-sconto_prevendita').value)
+    };
+
+    // Effettua la richiesta PUT al backend per aggiornare il prodotto
+    fetch(`http://localhost:8080/api/prodotto`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(editedProduct)
+    })
+    .then(function(response) {
+        if (response.ok) {
+            alert("Prodotto modificato con successo!");
+            fetchProducts(); // Ricarica la lista dei prodotti
+            const modal = bootstrap.Modal.getInstance(document.getElementById('edit-product-modal'));
+            modal.hide(); // Chiudi la modale
+        } else {
+            throw new Error("Errore nella modifica del prodotto");
+        }
+    })
+    .catch(function(error) {
+        console.error("Errore durante la modifica del prodotto:", error);
+    });
 });
 
+function resetForm(product) {
+    fillFormWithProductData(product); // Ripristina i dati originali nel modulo
+}
 
+function resetForm(product) {
+    // Ripristina i valori originali nel modulo usando i dati del prodotto
+    fillFormWithProductData(product);
+}
 
-
+ 
+}); 

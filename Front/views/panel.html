@@ -13,7 +13,7 @@ b. Elenco dei prodotti amministrabili – link a view.html
 c. Logout -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
     <meta charset="UTF-8">
@@ -26,19 +26,19 @@ c. Logout -->
 </head>
 
 <body>
-
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <img class="logo" src="/assets/img/logo.png" alt="">
             <a class="navbar-brand" href="#" style="padding: 0!important;">Nerd Vault</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <button type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
+                        <button type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal"
+                            data-bs-whatever="@mdo">Login</button>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="pannello.html">Pannello</a>
@@ -47,184 +47,172 @@ c. Logout -->
             </div>
         </div>
     </nav>
-    <!-- MODALE LOGIN +++ VA CON LA NAVBAR -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="#exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="">Login</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> <!-- da togliere -->
-            </div>
-            <div class="modal-body">
-              <form class="needs-validation" novalidate>
-                <div class="mb-3">
-                  <label for="inputEMail" class="col-form-label">E-mail</label>
-                  <input type="email" class="form-control" id="inputEMail" placeholder="michele@macaco.calabria" required> 
-                  <div class="invalid-feedback">
-                    Please insert an E-mail
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <label for="inputPassword" class="col-form-label">Password</label>
-                  <input type="text" class="form-control" id="inputPassword" required>
-                  <div class="invalid-feedback">
-                    Please insert a password
-                  </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Invia</button>
-                  </div>
-              </form>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-     <!-- FINE MODALE LOGIN +++ VA CON LA NAVBAR --> 
 
     <h1>Benvenuto nel pannello di controllo! Modifica o elimina un prodotto, oppure aggiungine uno.</h1>
 
     <!-- Aggiungi il pulsante per aprire la modale -->
-<button id="open-add-product-modal" class="btn btn-primary mt-3">Aggiungi Prodotto</button>
+    <button id="open-add-product-modal" class="btn btn-primary mt-3">Aggiungi Prodotto</button>
 
-<!-- Modale per aggiungere un nuovo prodotto -->
-<div id="new-product-modal" class="modal" tabindex="-1" aria-labelledby="new-product-modal-label">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="new-product-modal-label">Aggiungi Nuovo Prodotto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="add-product-form">
-                    <div class="mb-3">
-                        <label for="nome" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="nome" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="descrizione" class="form-label">Descrizione</label>
-                        <textarea class="form-control" id="descrizione" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="categoria" class="form-label">Categoria</label>
-                        <select class="form-control" id="categoria" required>
-                            <option value="NOVITA">NOVITA</option>
-                            <option value="PREVENDITA">PREVENDITA</option>
-                            <option value="GAMES">GAMES</option>
-                            <option value="MERCH">MERCH</option>
-                            <option value="ACCESSORI">ACCESSORI</option>
-                            <option value="SPECIALE">SPECIALE</option>
-                            <option value="ALTRO">ALTRO</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="prezzo" class="form-label">Prezzo</label>
-                        <input type="number" class="form-control" id="prezzo" step="0.01" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="rimanenza" class="form-label">Rimanenza</label>
-                        <input type="number" class="form-control" id="rimanenza" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="abilitato" class="form-label">Abilitato</label>
-                        <input type="checkbox" id="abilitato">
-                    </div>
-                    <div class="mb-3">
-                        <label for="visibile" class="form-label">Visibile</label>
-                        <input type="checkbox" id="visibile">
-                    </div>
-                    <div class="mb-3">
-                        <label for="immagine" class="form-label">Immagine</label>
-                        <input type="text" class="form-control" id="immagine">
-                    </div>
-                    <div class="mb-3">
-                        <label for="inizio_prevendita" class="form-label">Inizio Prevendita</label>
-                        <input type="date" class="form-control" id="inizio_prevendita">
-                    </div>
-                    <div class="mb-3">
-                        <label for="data_uscita" class="form-label">Data Uscita</label>
-                        <input type="date" class="form-control" id="data_uscita">
-                    </div>
-                    <div class="mb-3">
-                        <label for="sconto_prevendita" class="form-label">Sconto Prevendita</label>
-                        <input type="number" class="form-control" id="sconto_prevendita">
-                    </div>
-                    <button type="submit" class="btn btn-primary" id="submit-product-btn">Aggiungi Prodotto</button>
-                </form>
+    <!-- Modale per aggiungere un nuovo prodotto -->
+    <div id="new-product-modal" class="modal" tabindex="-1" aria-labelledby="new-product-modal-label">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="new-product-modal-label">Aggiungi Nuovo Prodotto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="add-product-form">
+                        <!-- Campi per l'inserimento del prodotto -->
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="nome" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descrizione" class="form-label">Descrizione</label>
+                            <textarea class="form-control" id="descrizione" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="categoria" class="form-label">Categoria</label>
+                            <select class="form-control" id="categoria" required>
+                                <option value="NOVITA">NOVITA</option>
+                                <option value="PREVENDITA">PREVENDITA</option>
+                                <option value="GAMES">GAMES</option>
+                                <option value="MERCH">MERCH</option>
+                                <option value="ACCESSORI">ACCESSORI</option>
+                                <option value="SPECIALE">SPECIALE</option>
+                                <option value="ALTRO">ALTRO</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="prezzo" class="form-label">Prezzo</label>
+                            <input type="number" class="form-control" id="prezzo" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="rimanenza" class="form-label">Rimanenza</label>
+                            <input type="number" class="form-control" id="rimanenza" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="abilitato" class="form-label">Abilitato</label>
+                            <input type="checkbox" id="abilitato">
+                        </div>
+                        <div class="mb-3">
+                            <label for="visibile" class="form-label">Visibile</label>
+                            <input type="checkbox" id="visibile">
+                        </div>
+                        <div class="mb-3">
+                            <label for="immagine" class="form-label">Immagine</label>
+                            <input type="text" class="form-control" id="immagine">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inizio_prevendita" class="form-label">Inizio Prevendita</label>
+                            <input type="date" class="form-control" id="inizio_prevendita">
+                        </div>
+                        <div class="mb-3">
+                            <label for="data_uscita" class="form-label">Data Uscita</label>
+                            <input type="date" class="form-control" id="data_uscita">
+                        </div>
+                        <div class="mb-3">
+                            <label for="sconto_prevendita" class="form-label">Sconto Prevendita</label>
+                            <input type="number" class="form-control" id="sconto_prevendita">
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="submit-product-btn">Aggiungi Prodotto</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
+    <!-- Tabella per visualizzare i prodotti -->
+    <div id="product-table-container">
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>Immagine</th>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>Prezzo</th>
+                    <th>Rimanenza</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody id="product-table-body"></tbody>
+        </table>
+    </div>
 
-    <!-- Contenitore per visualizzare i prodotti -->
-    <div id="product-cards-container"></div>
-
-    <!-- Modulo per ogni prodotto (template) -->
-    <script type="text/template" id="product-template">
-        <div class="product-card">
-            <div class="product-details">
-                <div>
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome">
+    <!-- Modale per modificare un prodotto -->
+    <div id="edit-product-modal" class="modal" tabindex="-1" aria-labelledby="edit-product-modal-label">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edit-product-modal-label">Modifica Prodotto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div>
-                    <label for="descrizione">Descrizione:</label>
-                    <textarea id="descrizione" name="descrizione"></textarea>
+                <div class="modal-body">
+                    <form id="edit-product-form">
+                        <!-- I campi per la modifica saranno precompilati -->
+                        <div class="mb-3">
+                            <label for="edit-nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="edit-nome" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-descrizione" class="form-label">Descrizione</label>
+                            <textarea class="form-control" id="edit-descrizione" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-categoria" class="form-label">Categoria</label>
+                            <select class="form-control" id="edit-categoria" required>
+                                <option value="NOVITA">NOVITA</option>
+                                <option value="PREVENDITA">PREVENDITA</option>
+                                <option value="GAMES">GAMES</option>
+                                <option value="MERCH">MERCH</option>
+                                <option value="ACCESSORI">ACCESSORI</option>
+                                <option value="SPECIALE">SPECIALE</option>
+                                <option value="ALTRO">ALTRO</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-prezzo" class="form-label">Prezzo</label>
+                            <input type="number" class="form-control" id="edit-prezzo" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-rimanenza" class="form-label">Rimanenza</label>
+                            <input type="number" class="form-control" id="edit-rimanenza" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-immagine" class="form-label">Immagine</label>
+                            <input type="text" class="form-control" id="edit-immagine">
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-inizio_prevendita" class="form-label">Inizio Prevendita</label>
+                            <input type="date" class="form-control" id="edit-inizio_prevendita">
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-data_uscita" class="form-label">Data Uscita</label>
+                            <input type="date" class="form-control" id="edit-data_uscita">
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-sconto_prevendita" class="form-label">Sconto Prevendita</label>
+                            <input type="number" class="form-control" id="edit-sconto_prevendita">
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-abilitato" class="form-label">Abilitato</label>
+                            <input type="checkbox" id="edit-abilitato">
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-visibile" class="form-label">Visibile</label>
+                            <input type="checkbox" id="edit-visibile">
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="update-product-btn">Conferma modifiche</button>
+                        <button type="button" class="btn btn-secondary" id="reset-edit-product-btn">Reset</button>
+                    </form>
                 </div>
-                <div>
-                    <label for="categoria">Categoria:</label>
-                    <input type="text" id="categoria" name="categoria">
-                </div>
-                <div>
-                    <label for="prezzo">Prezzo:</label>
-                    <input type="number" id="prezzo" name="prezzo">
-                </div>
-                <div>
-                    <label for="rimanenza">Rimanenza:</label>
-                    <input type="number" id="rimanenza" name="rimanenza">
-                </div>
-                <div>
-                    <label for="abilitato">Abilitato:</label>
-                    <input type="checkbox" id="abilitato" name="abilitato">
-                </div>
-                <!-- Nuovo campo Visibile -->
-                <div>
-                    <label for="visibile">Visibile:</label>
-                    <input type="checkbox" id="visibile" name="visibile">
-                </div>
-                <div>
-                    <label for="immagine">Immagine:</label>
-                    <input type="text" id="immagine" name="immagine">
-                </div>
-                <div>
-                    <label for="inizio_prevendita">Inizio Prevendita:</label>
-                    <input type="date" id="inizio_prevendita" name="inizio_prevendita">
-                </div>
-                <div>
-                    <label for="data_uscita">Data Uscita:</label>
-                    <input type="date" id="data_uscita" name="data_uscita">
-                </div>
-                <div>
-                    <label for="sconto_prevendita">Sconto Prevendita:</label>
-                    <input type="number" id="sconto_prevendita" name="sconto_prevendita">
-                </div>
-            </div>
-    
-            <!-- Pulsanti per interazioni con il prodotto -->
-            <div class="product-buttons">
-                <button type="button" id="update-product-btn">Modifica</button>
-                <button type="button" id="delete-product-btn">Elimina</button>
-                <button type="button" id="reset-form-btn">Reset</button>
             </div>
         </div>
-    </script>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/scripts/panel.js"></script>
-    <script src="/assets/scripts/login.js"></script>
-
 </body>
 
 </html>
-
