@@ -128,6 +128,7 @@ public class ProdottoServiceImpl implements ProdottoService {
 		prodotto.setAbilitato(modifiche.isAbilitato());
 		prodotto.setVisibile(modifiche.isVisibile());
 		prodotto.setImmagine(modifiche.getImmagine());
+		prodotto.setCopieVendute(modifiche.getCopieVendute());
 		prodotto.setInizioPrevendita(modifiche.getInizioPrevendita());
 		prodotto.setDataUscita(modifiche.getDataUscita());
 		prodotto.setScontoPrevendita(modifiche.getScontoPrevendita());
@@ -145,6 +146,7 @@ public class ProdottoServiceImpl implements ProdottoService {
 				prodotto.getCategoria(), 
 				prodotto.getPrezzo(), 
 				prodotto.getRimanenza(), 
+				prodotto.getCopieVendute(),
 				prodotto.isAbilitato(), 
 				prodotto.isVisibile(),
 				prodotto.getImmagine(), 
