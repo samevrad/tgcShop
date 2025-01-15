@@ -20,6 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         prodotti = data; // Memorizza i prodotti
         console.log(prodotti);
+
+        /* INNESTO EVENTUALE DATA 
+        const presaleProducts = prodotti.filter(p => (p.dataUscita > "2025-01-15" && p.inizioPrevendita < "2025-01-15"));
+        const availableProducts = prodotti.filter(p => !(p.dataUscita > "2025-01-15" && p.inizioPrevendita < "2025-01-15"));*/
+
         const presaleProducts = prodotti.filter(p => p.categoria === PREVENDITA);
         const availableProducts = prodotti.filter(p => p.categoria != null && p.categoria !== PREVENDITA);
 
@@ -60,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if(prodotto.categoria==PREVENDITA){
          const presalePrice = prodotto.prezzo-(prodotto.prezzo*prodotto.scontoPrevendita)/100;
         card.innerHTML = `
-        <a href="product.html?id=${prodotto.prodottoId}"><img src="${prodotto.immagine}" class="card-img-top" alt="${prodotto.nome}"></a>
+        <a href="product.html?id=${prodotto.prodottoId}"><img src="${prodotto.imgUrl}" class="card-img-top" alt="${prodotto.nome}"></a>
         <div class="card-body d-flex flex-column ">
           <h5 class="card-title">${prodotto.nome}</h5>
           <div class="d-flex justify-content-between">
@@ -71,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       }else{
       card.innerHTML = `
-        <a href="product.html?id=${prodotto.prodottoId}"><img src="${prodotto.immagine}" class="card-img-top" alt="${prodotto.nome}"></a>
+        <a href="product.html?id=${prodotto.prodottoId}"><img src="${prodotto.imgUrl}" class="card-img-top" alt="${prodotto.nome}"></a>
         <div class="card-body d-flex flex-column ">
           <h5 class="card-title">${prodotto.nome}</h5>
           <p class="card-text"><strong>€${prodotto.prezzo}</strong></p>
@@ -115,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     //controlli di validità
-    console.log(gamesChecked, merchChecked,accessoriesChecked,specialsChecked,otherChecked);
+    console.log("categorie selezionate:" + gamesChecked, merchChecked,accessoriesChecked,specialsChecked,otherChecked);
     console.log("Categorie selezionate:", selectedCategories);
     console.log("Prodotti filtrati:", filteredProducts);
 
