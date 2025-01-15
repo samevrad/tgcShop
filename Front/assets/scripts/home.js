@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.classList.add("card");
 
         const productImage = document.createElement("img");
-        productImage.src = product.immagine || "/assets/img/default.jpg";
+        productImage.src = product.imgUrl;
         productImage.alt = product.nome;
         card.appendChild(productImage);
 

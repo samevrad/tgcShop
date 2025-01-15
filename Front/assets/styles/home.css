@@ -42,6 +42,7 @@ body{
     a:hover {
         color: rgb(255, 255, 255,0.75) !important;
     }
+
 }
 
 /******** SLIDER *******/
@@ -131,6 +132,13 @@ body{
     background: rgba(255, 254, 254, 0.8);
 }
 
+body.modal-backdrop {
+    z-index: 1040 !important; /* Assicurati che l'overlay sia dietro il modale */
+  }
+  
+body.modal {
+    z-index: 1050 !important; /* Modale sopra l'overlay */
+}
 
 /********************* PRODUCTS GRID *****************/
 .product-grid {
@@ -225,15 +233,15 @@ body{
   }
 
   .parallax1 {
-    background-image: url('/Front/assets/img/parallax1.jpg');
+    background-image: url('..//img/parallax1.jpg');
   }
 
   .parallax2 {
-    background-image: url('/Front/assets/img/parallax2.jpg');
+    background-image: url('../img/parallax2.jpg');
   }
 
   .parallax3{
-    background-image: url('/Front/assets/img/parallax3.jpg');
+    background-image: url('../img/parallax3.jpg');
   }
 
 @media (max-width: 768px) {

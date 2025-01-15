@@ -5,19 +5,26 @@ import java.util.List;
 import org.generation.NerdVault.dtos.ProdottoDto;
 import org.generation.NerdVault.entities.Prodotto;
 import org.generation.NerdVault.enums.ProdottoCategoria;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface ProdottoService {
 
-	public List<Prodotto> prendiTutti();
+//	List<Prodotto> prendiTutti();
+	List<ProdottoDto> prendiTutti();
 
-	public Prodotto cercaPerId(int id);
-	public List<Prodotto> cercaPerCategoria(ProdottoCategoria categoria);
+	Prodotto cercaPerId(int id);
+	ProdottoDto cercaPerIdDto(int id);
+	
+//	List<Prodotto> cercaPerCategoria(ProdottoCategoria categoria);
+	List<ProdottoDto> cercaPerCategoria(ProdottoCategoria categoria);
+	
+	ProdottoDto aggiungi(Prodotto prodotto);
+	ProdottoDto aggiungiConImg(Prodotto prodotto, MultipartFile multipartFile);
+	
+	ProdottoDto aggiorna(Prodotto prodotto, Prodotto prodottoModificato);
+	
+	void cancellaProdotto(int id);
 
-	public ProdottoDto aggiungi(Prodotto prodotto);
-	
-	public ProdottoDto aggiorna(Prodotto prodotto, Prodotto prodottoModificato);
-	
-	public void cancellaProdotto(int id);
 	
 	
 }

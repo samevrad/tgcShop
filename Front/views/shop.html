@@ -17,27 +17,60 @@ dell’evento come parametro url -->
 </head>
 <body>
     
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <img class="logo" src="/assets/img/logo.png" alt="">
-                <a class="navbar-brand" href="#" style="padding: 0!important;">Nerd Vault</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.html">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pannello.html">Pannello</a>
-                        </li>
-                    </ul>
-                </div>
+       <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <img class="logo" src="/assets/img/logo.png" alt="">
+            <a class="navbar-brand" href="#" style="padding: 0!important;">Nerd Vault</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <button type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pannello.html">Pannello</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-        <!-- Fine Navbar -->
+        </div>
+    </nav>
+    <!-- MODALE LOGIN +++ VA CON LA NAVBAR -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="#exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="">Login</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> <!-- da togliere -->
+            </div>
+            <div class="modal-body">
+              <form class="needs-validation" novalidate>
+                <div class="mb-3">
+                  <label for="inputEMail" class="col-form-label">E-mail</label>
+                  <input type="email" class="form-control" id="inputEMail" placeholder="michele@macaco.calabria" required> 
+                  <div class="invalid-feedback">
+                    Please insert an E-mail
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="inputPassword" class="col-form-label">Password</label>
+                  <input type="text" class="form-control" id="inputPassword" required>
+                  <div class="invalid-feedback">
+                    Please insert a password
+                  </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Invia</button>
+                  </div>
+              </form>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+     <!-- FINE MODALE LOGIN +++ VA CON LA NAVBAR --> 
 
         <div class="container-fluid row"  id="container-prodotti" >
                 
@@ -45,8 +78,32 @@ dell’evento come parametro url -->
             <div class="col-xs-12 col-sm-2 d-flex flex-column fixed" id="filtri">
                 <h1>All products</h1>
                 <h2>Filters</h2>
-                <label for="price-range" class="form-label"> Price</label>
+                <label for="price-range" class="form-label" style="margin-top: 1rem;"> Price</label>
                 <input type="range" class="form-range" id="price-range">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="Check1">
+                    <label class="form-check-label" for="Check1">Games</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="Check2">
+                    <label class="form-check-label" for="Check2">Merch</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="Check3">
+                    <label class="form-check-label" for="Check3">Accessories</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="Check4">
+                    <label class="form-check-label" for="Check4">Specials</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="Check5">
+                    <label class="form-check-label" for="Check5">Other</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="Check6">
+                    <label class="form-check-label" for="Check6">Hot</label>
+                  </div>
             </div>
             <!-- FINE SEZIONE FILTRI -->
 
@@ -54,12 +111,12 @@ dell’evento come parametro url -->
             <div class="col-xs-12 col-sm-10 flex-column align-items-center" id="prodotti">
                 <p id="valore-disponibili"> </p> <!--get dei prodotti per numero-->
                 <!-- SEZIONE PRODOTTI DISPONIBILI -->
-                <h1 class="section-title"> Products available </h1>
+                <h1 class="section-title">  Available Products </h1>
                 <div id="available-container" class="row">
 
                 </div>
                 <!-- SEZIONE PRODOTTI PRENOTABILI -->
-                <h1 class="section-title"> Products in presale  </h1>
+                <h1 class="section-title"> Presale products  </h1>
                 <div id="presale-container" class="row">
 
                 </div>
@@ -71,5 +128,6 @@ dell’evento come parametro url -->
    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="/assets/scripts/shop.js"></script>
+    <script src="/assets/scripts/login.js"></script>
 </body>
 </html>

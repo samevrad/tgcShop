@@ -2,6 +2,7 @@ package org.generation.NerdVault.entities;
 
 import java.time.LocalDate;
 
+import org.generation.NerdVault.config.CustomProperties;
 import org.generation.NerdVault.enums.ProdottoCategoria;
 
 import jakarta.persistence.Column;
@@ -21,7 +22,7 @@ public class Prodotto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int prodottoId;
 	
-	@Column(nullable = false)
+	@Column(length = 100, nullable = false)
 	private String nome;
 	
 	@Column(nullable = false)
@@ -36,6 +37,9 @@ public class Prodotto {
 	
 	@Column(nullable = false)
 	private int rimanenza;
+	
+	@Column(nullable = true)
+	private int copieVendute;
 	
 	@Column(nullable = false)
 	private boolean abilitato;
@@ -52,7 +56,6 @@ public class Prodotto {
 	@Column(nullable = true)
 	private LocalDate dataUscita;
 	
-	//@JsonInclude(JsonInclude.Include.NON_NULL)
 	@Column(nullable = true)
 	private Double scontoPrevendita;
 	
@@ -113,9 +116,17 @@ public class Prodotto {
 	public void setAbilitato(boolean abilitato) {
 		this.abilitato = abilitato;
 	}
+	
+	public String getUrl() {
+		if (immagine == null || immagine.equals("")) {
+			return "/" + CustomProperties.DEFAULT_IMG_PATH;
+		}
+		return "/" + CustomProperties.IMG_FOLDER_PATH + "/" + immagine;
+	}
 
 	public String getImmagine() {
-        return immagine != null ? immagine : "/assets/img/non-disponibile.jpg";
+//        return immagine != null ? immagine : "/assets/img/non-disponibile.jpg";
+		return immagine;
     }
 
 	public void setImmagine(String immagine) {
@@ -154,7 +165,13 @@ public class Prodotto {
 	public void setVisibile(boolean visibile) {
 		this.visibile = visibile;
 	}
-	
-	
+
+	public int getCopieVendute() {
+		return copieVendute;
+	}
+
+	public void setCopieVendute(int copieVendute) {
+		this.copieVendute = copieVendute;
+	}
 	
 }
