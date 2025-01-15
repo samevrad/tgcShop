@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             productTitle.textContent = product.nome;
             productPrice.textContent = `Prezzo: €${product.prezzo.toFixed(2)}`;
-            productImg.src = product.immagine || "/assets/img/default.jpg";
+            productImg.src = product.imgUrl;
             productDesc.innerHTML = product.descrizione || "N/A";
 
             if(product.rimanenza==0){
