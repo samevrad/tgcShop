@@ -5,12 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Gestisce l'apertura della modale per aggiungere un nuovo prodotto
     const openAddProductModalButton = document.getElementById('open-add-product-modal');
     const newProductModal = document.getElementById('new-product-modal');
-    const mainContent = document.getElementById('main-content');
-
+    
     openAddProductModalButton.addEventListener('click', () => {
         const modal = new bootstrap.Modal(newProductModal);
         modal.show();
-        mainContent.setAttribute('inert', ''); // Disabilita l'interazione con la pagina
     });
 
     // Gestisce la chiusura della modale
@@ -18,13 +16,15 @@ document.addEventListener("DOMContentLoaded", () => {
     closeModalButton.addEventListener('click', () => {
         const modal = bootstrap.Modal.getInstance(newProductModal);
         modal.hide();
-        mainContent.removeAttribute('inert'); // Rimuove l'attributo inert
     });
 
     // Gestisce l'invio del modulo per aggiungere un nuovo prodotto
     const addProductForm = document.getElementById('add-product-form');
     addProductForm.addEventListener('submit', function(event) {
         event.preventDefault();
+
+        let inizioPrevendita = (document.getElementById('inizio_prevendita').value === "") ? null : document.getElementById('inizio_prevendita').value;
+        let dataUscita = (document.getElementById('data_uscita').value === "") ? null : document.getElementById('data_uscita').value;
 
         const newProduct = {
             nome: document.getElementById('nome').value,
@@ -34,19 +34,23 @@ document.addEventListener("DOMContentLoaded", () => {
             rimanenza: parseInt(document.getElementById('rimanenza').value),
             abilitato: document.getElementById('abilitato').checked,
             visibile: document.getElementById('visibile').checked,
-            immagine: document.getElementById('immagine').value,
-            inizio_prevendita: document.getElementById('inizio_prevendita').value,
-            data_uscita: document.getElementById('data_uscita').value,
-            sconto_prevendita: parseFloat(document.getElementById('sconto_prevendita').value)
+            inizioPrevendita: inizioPrevendita,
+            dataUscita: dataUscita,
+            scontoPrevendita: parseFloat(document.getElementById('sconto_prevendita').value)
         };
 
-        // Inserisci il prodotto nel backend
-        fetch('http://localhost:8080/api/prodotto', {
+        console.log(newProduct);
+        
+        const immagine = document.getElementById('immagine').files[0];
+
+        const formData = new FormData();
+
+        formData.append("prodotto", JSON.stringify(newProduct));
+        formData.append("image", immagine)
+
+        fetch('http://localhost:8080/api/prodotto/alt', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newProduct)
+            body: formData
         })
         .then(function(response) {
             if (response.ok) {
@@ -60,10 +64,13 @@ document.addEventListener("DOMContentLoaded", () => {
             fetchProducts(); // Ricarica la lista dei prodotti
             const modal = bootstrap.Modal.getInstance(newProductModal);
             modal.hide();
-            mainContent.removeAttribute('inert');
+            console.log(product);
+            location.reload();
+            
         })
+
         .catch(function(error) {
-            console.error("Errore durante l'inserimento del prodotto:", error);
+            console.error("Errore fetch nell'inserimento del prodotto:", error);
         });
     });
 
@@ -104,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
         row.setAttribute('data-product-id', product.prodottoId);
 
         row.innerHTML = `
-            <td><img src="${product.immagine}" alt="${product.nome}" width="50"></td>
+            <td><img src="${product.imgUrl}" alt="${product.nome}" width="50"></td>
             <td>${product.nome}</td>
             <td>${product.categoria}</td>
             <td>${product.prezzo}</td>
@@ -135,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('edit-rimanenza').value = product.rimanenza;
         document.getElementById('edit-abilitato').checked = product.abilitato;
         document.getElementById('edit-visibile').checked = product.visibile;
-        document.getElementById('edit-immagine').value = product.immagine;
+        document.getElementById('edit-immagine').value = product.imgUrl;
         document.getElementById('edit-inizio_prevendita').value = product.inizio_prevendita;
         document.getElementById('edit-data_uscita').value = product.data_uscita;
         document.getElementById('edit-sconto_prevendita').value = product.sconto_prevendita;
@@ -229,10 +236,6 @@ function resetForm(product) {
     fillFormWithProductData(product); // Ripristina i dati originali nel modulo
 }
 
-function resetForm(product) {
-    // Ripristina i valori originali nel modulo usando i dati del prodotto
-    fillFormWithProductData(product);
-}
 
  
 }); 

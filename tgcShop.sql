@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `prodotto` (
     `copie_vendute` INT DEFAULT 0,
     `abilitato` BOOLEAN DEFAULT FALSE,
     `visibile` BOOLEAN DEFAULT TRUE,
-    `immagine` VARCHAR(75) DEFAULT NULL,
+    `immagine` VARCHAR(150) DEFAULT NULL,
     `inizio_prevendita` DATE DEFAULT NULL,
 	`data_uscita` DATE DEFAULT NULL,
     `sconto_prevendita` DECIMAL(4,2) DEFAULT NULL

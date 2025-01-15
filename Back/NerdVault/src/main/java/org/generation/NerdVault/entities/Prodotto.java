@@ -121,7 +121,7 @@ public class Prodotto {
 		if (immagine == null || immagine.equals("")) {
 			return "/" + CustomProperties.DEFAULT_IMG_PATH;
 		}
-		return "/" + CustomProperties.IMG_FOLDER_PATH + "/" + immagine;
+		return "/" + CustomProperties.IMG_URL_PATH + "/" + immagine;
 	}
 
 	public String getImmagine() {
