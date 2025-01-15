@@ -38,6 +38,9 @@ public class Prodotto {
 	@Column(nullable = false)
 	private int rimanenza;
 	
+	@Column(nullable = true)
+	private int copieVendute;
+	
 	@Column(nullable = false)
 	private boolean abilitato;
 	
@@ -162,7 +165,13 @@ public class Prodotto {
 	public void setVisibile(boolean visibile) {
 		this.visibile = visibile;
 	}
-	
-	
+
+	public int getCopieVendute() {
+		return copieVendute;
+	}
+
+	public void setCopieVendute(int copieVendute) {
+		this.copieVendute = copieVendute;
+	}
 	
 }

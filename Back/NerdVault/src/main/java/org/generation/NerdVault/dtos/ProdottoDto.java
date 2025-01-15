@@ -16,6 +16,7 @@ public class ProdottoDto {
 	private ProdottoCategoria categoria;
 	private double prezzo;
 	private int rimanenza;
+	private int copieVendute;
 	private boolean abilitato;
 	private boolean visibile;
 	private String immagine;
@@ -131,18 +132,27 @@ public class ProdottoDto {
 		this.visibile = visibile;
 	}
 	
+	public int getCopieVendute() {
+		return copieVendute;
+	}
+
+	public void setCopieVendute(int copieVendute) {
+		this.copieVendute = copieVendute;
+	}
+
 	public ProdottoDto() {
 	}
-	
+
 	public ProdottoDto(int prodottoId, String nome, String descrizione, ProdottoCategoria categoria, double prezzo,
-			int rimanenza, boolean abilitato, boolean visibile, String immagine, LocalDate inizioPrevendita, LocalDate dataUscita,
-			double scontoPrevendita) {
+			int rimanenza, int copieVendute, boolean abilitato, boolean visibile, String immagine,
+			LocalDate inizioPrevendita, LocalDate dataUscita, double scontoPrevendita) {
 		this.prodottoId = prodottoId;
 		this.nome = nome;
 		this.descrizione = descrizione;
 		this.categoria = categoria;
 		this.prezzo = prezzo;
 		this.rimanenza = rimanenza;
+		this.copieVendute = copieVendute;
 		this.abilitato = abilitato;
 		this.visibile = visibile;
 		this.immagine = immagine;
@@ -150,35 +160,5 @@ public class ProdottoDto {
 		this.dataUscita = dataUscita;
 		this.scontoPrevendita = scontoPrevendita;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
