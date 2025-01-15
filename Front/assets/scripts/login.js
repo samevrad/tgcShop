@@ -125,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   loginButton.addEventListener('click', async (e) => {
       e.preventDefault(); 
+      console.log('Login button clicked, but page did not refresh');
 
       const username = usernameInput.value;
       const password = passwordInput.value;
@@ -144,24 +145,30 @@ document.addEventListener('DOMContentLoaded', () => {
                   body: JSON.stringify(user),
               });
 
+              
               if (response.ok) {
-                  const loggedInUser = await response.json();
-
+                const loggedInUser = await response.json();
+                console.log("tipo di utente:"+loggedInUser.ruolo);
+                
                 
                   localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
 
                   // RUOLO
                   const role = loggedInUser.ruolo;
                   if (role === 'ADMIN') {
-                      window.location.href = 'panel.html'; 
+                      //window.location.href = 'panel.html'; 
+                      console.log(loggedInUser);
+                      window.location.href = 'boh.html';
                   } else if (role === 'UTENTE') {
-                      window.location.href = 'user.html'; 
+                      //window.location.href = 'index.html'; 
+                      console.log(loggedInUser);
+                      
                   } else {
                       alert('Ruolo non riconosciuto. Contatta l\'amministratore di sistema.');
                   }
               } else {
                   alert('Credenziali non valide!');
-              }
+              } 
           } catch (error) {
               console.error('Errore nella richiesta di login:', error);
               alert('Si è verificato un errore durante il login. Riprova più tardi.');

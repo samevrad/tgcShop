@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("Script caricato correttamente");
 
   let prodotti = []; // Variabile per memorizzare i prodotti
+  const PREVENDITA = "PREVENDITA"; // Definisci la costante per PREVENDITA
+
 
   function getProducts() {
     const apiUrl = `http://localhost:8080/api/prodotto`; // Corretto l'URL
@@ -18,8 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         prodotti = data; // Memorizza i prodotti
         console.log(prodotti);
-        const presaleProducts = prodotti.filter(p => p.inizioPrevendita != null);
-        const availableProducts = prodotti.filter(p => p.inizioPrevendita === null);
+        const presaleProducts = prodotti.filter(p => p.categoria === PREVENDITA);
+        const availableProducts = prodotti.filter(p => p.categoria != null && p.categoria !== PREVENDITA);
 
         const numeroProdotti = document.getElementById("valore-disponibili");
         numeroProdotti.textContent = `${prodotti.length} prodotti`;
@@ -55,8 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = document.createElement("div");
       card.classList.add("card", "m-2", "col-xs-12", "col-md-5", "col-xl-3");
 
-      if(prodotto.inizioPrevendita){
-         const presalePrice = prodotto.prezzo-(prodotto.prezzo/prodotto.scontoPrevendita);
+      if(prodotto.categoria==PREVENDITA){
+         const presalePrice = prodotto.prezzo-(prodotto.prezzo*prodotto.scontoPrevendita)/100;
         card.innerHTML = `
         <a href="product.html?id=${prodotto.prodottoId}"><img src="${prodotto.immagine}" class="card-img-top" alt="${prodotto.nome}"></a>
         <div class="card-body d-flex flex-column ">
@@ -91,20 +93,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const accessoriesChecked = document.getElementById("Check3").checked;
     const specialsChecked = document.getElementById("Check4").checked;
     const otherChecked = document.getElementById("Check5").checked;
+    const hotChecked = document.getElementById("Check6").checked;
 
     // Crea una lista delle categorie selezionate
     const selectedCategories = [];
     if (gamesChecked) selectedCategories.push("GAMES");
     if (merchChecked) selectedCategories.push("MERCH");
-    if (accessoriesChecked) selectedCategories.push("ACCESSORIES");
-    if (specialsChecked) selectedCategories.push("SPECIALS");
-    if (otherChecked) selectedCategories.push("OTHER");
+    if (accessoriesChecked) selectedCategories.push("ACCESSORI");
+    if (specialsChecked) selectedCategories.push("SPECIALE");
+    if (otherChecked) selectedCategories.push("ALTRO");
+    if (hotChecked) selectedCategories.push("NOVITA");
 
     // Filtra i prodotti in base alle categorie selezionate
     const filteredProducts = prodotti.filter(prodotto => {
       // Se non è selezionato nessun filtro, restituisce tutti i prodotti
       if (selectedCategories.length === 0) {
-        return true;
+        return prodotto.categoria !== PREVENDITA;
       }
       // Verifica se la categoria del prodotto è nelle categorie selezionate
       return selectedCategories.includes(prodotto.categoria);
