@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     // Funzione per creare le cards per ogni prodotto
+    //function displayProductCards(prodotti, containerId, NOVITA/BESTSELLER)
     function displayProductCards(prodotti, containerId) {
       console.log(`Rendering cards for container: ${containerId}`, prodotti);
       const container = document.getElementById(containerId);
