@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `prodotto` (
     `copie_vendute` INT DEFAULT 0,
     `abilitato` BOOLEAN DEFAULT FALSE,
     `visibile` BOOLEAN DEFAULT TRUE,
-    `immagine` VARCHAR(75) DEFAULT NULL,
+    `immagine` VARCHAR(150) DEFAULT NULL,
     `inizio_prevendita` DATE DEFAULT NULL,
 	`data_uscita` DATE DEFAULT NULL,
     `sconto_prevendita` DECIMAL(4,2) DEFAULT NULL
@@ -42,8 +42,8 @@ CREATE TABLE IF NOT EXISTS `prodotto` (
 CREATE TABLE IF NOT EXISTS `ordine` (
 	`ordine_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `utente_id` INT NOT NULL,
-    `data_ordine` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    `data_consegna` DATETIME DEFAULT NULL,
+    `data_ordine` DATETIME NULL DEFAULT CURRENT_TIMESTAMP(),
+    `data_consegna` DATE DEFAULT NULL,
 	`stato_ordine` ENUM ('SPEDITO', 'CONSEGNATO', 'IN_LAVORAZIONE', 'CANCELLATO') DEFAULT 'IN_LAVORAZIONE',
     `indirizzo_spedizione` VARCHAR(75) NOT NULL,
     

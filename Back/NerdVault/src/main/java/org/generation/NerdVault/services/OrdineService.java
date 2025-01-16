@@ -13,7 +13,12 @@ public interface OrdineService {
 	List<OrdineDto> prendiConUtenteId(int utenteId);
 	OrdineDto prendiConId(int id);
 	
-	OrdineDto aggiungi(Ordine ordine);
+//	OrdineDto aggiungi(Ordine ordine);
+	OrdineDto aggiungi(OrdineDto ordine);
+	
 	Ordine getById(int ordineId);
-	OrdineDto aggiorna(Ordine daModificare, Ordine ordine);
+
+//	OrdineDto aggiorna(Ordine daModificare, Ordine ordine);
+	OrdineDto aggiorna(Ordine daModificare, OrdineDto ordine);
+	void cancellaOrdine(int trovatoId);
 }
