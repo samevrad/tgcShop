@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `ordine` (
 	`ordine_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `utente_id` INT NOT NULL,
     `data_ordine` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    `data_consegna` DATETIME DEFAULT NULL,
+    `data_consegna` DATE DEFAULT NULL,
 	`stato_ordine` ENUM ('SPEDITO', 'CONSEGNATO', 'IN_LAVORAZIONE', 'CANCELLATO') DEFAULT 'IN_LAVORAZIONE',
     `indirizzo_spedizione` VARCHAR(75) NOT NULL,
     
