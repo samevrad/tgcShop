@@ -43,6 +43,7 @@ function fetchOrders() {
     displayOrders(annullatiOrdini,);
     */
 
+    filterAndDisplayOrders(ordini);
 
 })
 .catch(error => {
@@ -52,8 +53,46 @@ function fetchOrders() {
         Si è verificato un errore nel recupero dei prodotti.
       </div>`;
   });
+
 }//CHIUSURA FETCH ORDERS
 
+function createOrdersRow(ordini) {
+    const container = document.getElementById("ordini-container");
+    // Assicurati che il contenitore sia svuotato prima di aggiungere nuove righe
+    container.innerHTML = "";
+    console.log(("Rendering table in ", container, " with ", ordini.length, " rows"));
+
+    ordini.forEach(ordine => {
+        //creazione row per ogni ordine
+        const row = document.createElement('tr');
+        row.setAttribute('ordine-ID', ordine.ordineId);
+
+        row.innerHTML = `
+            <td>${ordine.dataConsegna || "Non disponibile"}</td>
+            <td>${ordine.dataOrdine}</td>
+            <td>${ordine.indirizzoSpedizione}</td>
+            <td>${ordine.statoOrdine}</td>
+            <td>
+                <button class="btn btn-warning cancel-order-btn">Annulla</button>
+                <button class="btn btn-danger delete-order-btn">Elimina</button>
+            </td>
+        `;
+
+        // Event listeners per i pulsanti
+        row.querySelector('.cancel-order-btn').addEventListener('click', () => {
+            console.log(`Annulla ordine con ID ${ordine.ordineId}`);
+            // Implementa la logica per annullare l'ordine
+        });
+
+        row.querySelector('.delete-order-btn').addEventListener('click', () => {
+            console.log(`Elimina ordine con ID ${ordine.ordineId}`);
+            // Implementa la logica per eliminare l'ordine
+        });
+
+        // Aggiungi la riga al contenitore
+        container.appendChild(row);
+    });
+}
 
  // funzione per creare la tabella degli ordini
  function filterAndDisplayOrders(ordini){
@@ -76,7 +115,7 @@ function fetchOrders() {
     const filteredOrders = ordini.filter(ordine => {
     // Se non è selezionato nessun filtro, restituisce tutti gli ordini
     if (selectedFilters.length === 0) {
-      return ordini
+      return true
     }
     // Verifica se la categoria del prodotto è nelle categorie selezionate
     return selectedFilters.includes(ordine.statoOrdine);
@@ -98,31 +137,6 @@ checkboxes.forEach(checkbox => {
     filterAndDisplayOrders(ordini);
   });
 });
-
-function createOrdersRow(ordine) {
-    const container = document.getElementById("ordini-container");
-    container.innerHTML = "";
-
-    const row = document.createElement('tr');
-    row.setAttribute('ordine-ID', ordine.ordineId);
-
-    row.innerHTML = `
-        <td>${ordine.dataConsegna}</td>
-        <td>${ordine.dataOrdine}</td>
-        <td>${ordine.indirizzoSpedizione}</td>
-        <td>${ordine.statoOrdine}</td>
-        <td>
-            <button class="btn btn-warning cancel-order-btn">Annulla</button>
-            <button class="btn btn-danger delete-order-btn">Elimina</button>
-        </td>
-    `;
-
-    row.querySelector('.cancel-order-btn').addEventListener('click', () => {
-        //openEditProductModal(product);
-    });
-
-    return row;
-}
 
 fetchOrders();
 })
